@@ -6,4 +6,7 @@ router.get('/', (req,res) => {
     res.send("Hello World")
 })
 
+router.get('/addround', (req,res) => {
+    res.render('addround')
+})
 module.exports = router
