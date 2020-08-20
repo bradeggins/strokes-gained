@@ -1,6 +1,6 @@
 const knex = require('knex')
 const config = require('../knexfile').test
-const db = require('./db')
+const db = require('../db/db')
 
 const testDb = knex(config)
 
@@ -16,12 +16,13 @@ describe('Check test setup', () => {
 
 describe('Check addround function', () => {
     test('Check addround function adds a new round', () => {
+        expect.assertions(1)
         return db.addRound('2020-08-21', 'Harewood', testDb)
-        .then((result) => {
-            expect(result[0]).toBe(4)            
-        }).catch((err) => {
-            console.log(err)
-        });
+            .then((result) => {
+                expect(result[0]).toBe(4)            
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 })
 
