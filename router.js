@@ -15,15 +15,21 @@ router.post('/addround', (req, res) => {
     const { round_date, course } = req.body
     return db.addRound(round_date, course)
     .then((result) => {
-        console.log(result)
-        res.render('addshot')
+        const viewData = { round_id: result[0]}
+        res.render('addshot', viewData)
     }).catch((err) => {
         res.status(500).send('Oops' + err.message)
     });
-   
 })
 
-router.post('/addround/entershot', (req, res) => {
-    console.log(req.body)
+router.post('/roundid/:id/entershot', (req, res) => {
+    const roundId = req.params.id
+    const { shot_from, dist_to_hole, holed} = req.body
+    return db.enterShot(shot_from, dist_to_hole, holed, roundId)
+    .then((result) => {
+        console.log(result);
+    }).catch((err) => {
+        res.status(500).send('Oops' + err.message)
+    });
 })
 module.exports = router
