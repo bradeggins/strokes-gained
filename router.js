@@ -27,7 +27,9 @@ router.post('/roundid/:id/entershot', (req, res) => {
     const { shot_from, dist_to_hole, holed} = req.body
     return db.enterShot(shot_from, dist_to_hole, holed, roundId)
     .then((result) => {
-        console.log(result);
+        console.log(result)
+        const data = {round_id: roundId}
+            res.render('addshot', data)
     }).catch((err) => {
         res.status(500).send('Oops' + err.message)
     });
