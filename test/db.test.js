@@ -28,7 +28,14 @@ describe('Check addround function', () => {
 
 describe('Check entershot function', () => {
     test('Enter round adds a shot to shots table', () => {
-        //TODO
+        return db.enterShot('F', 425, "", 3, testDb)
+            .then((result) => {
+                return db.getRoundShots(3, testDb)
+                .then((result) => {
+                    console.log(result)
+                    expect(result.length).toBe(21)
+                })
+            })
     })
 })
 
