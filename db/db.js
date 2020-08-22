@@ -10,10 +10,12 @@ function addRound(round_date, course, db = database){
 }
 
 function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
-    console.log(roundId)
     return db('shots')
         .insert({shot_from, dist_to_hole, holed})
-        //Then insert shot number(result) into holes, with roundId
+        .then((result) => {
+          return db('holes')
+            .insert({round_id: roundId, shot_id: result[0]})  
+        })
 }
 
 module.exports = {
