@@ -32,7 +32,6 @@ describe('Check entershot function', () => {
             .then((result) => {
                 return db.getRoundShots(3, testDb)
                 .then((result) => {
-                    console.log(result)
                     expect(result.length).toBe(21)
                 })
             })
@@ -49,6 +48,17 @@ describe('Check getRoundShots function', () => {
             .catch((err) => {
                 expect(err).toBeNull()
             })
+    })
+})
+
+describe('Check countHoles Function', () => {
+    test('Test returns correct amount of holes', () => {
+        return db.countHoles(3, testDb)
+            .then((result) => {
+                expect(result).toBe(5)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 })
 

@@ -24,8 +24,17 @@ function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
         })
 }
 
+function countHoles(roundId, db = database){
+    return getRoundShots(roundId)
+        .then((shots) => {
+            const countShots = shots.filter(shot => shot.holed == true)
+            return countShots.length
+        })
+}
+
 module.exports = {
     addRound,
     enterShot,
-    getRoundShots
+    getRoundShots,
+    countHoles
 }

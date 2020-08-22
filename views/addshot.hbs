@@ -19,3 +19,7 @@ Add a Round
     <label for="holed">Holed?</label>
     <button type="submit">Next Shot</button>
 </form>
+
+{{#each shots }}
+<p>Dist: {{dist_to_hole}}, From: {{ shot_from }} </p>
+{{/each }}
