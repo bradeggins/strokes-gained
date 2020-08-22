@@ -26,3 +26,22 @@ describe('Check addround function', () => {
     })
 })
 
+describe('Check entershot function', () => {
+    test('Enter round adds a shot to shots table', () => {
+        //TODO
+    })
+})
+
+describe('Check getRoundShots function', () => {
+    test('Function returns correct round details', () => {
+        expect.assertions(1)
+        return db.getRoundShots(3, testDb)
+            .then((result) => {
+                expect(result[0].dist_to_hole).toBe(425)
+            })
+            .catch((err) => {
+                expect(err).toBeNull()
+            })
+    })
+})
+
