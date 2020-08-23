@@ -1,5 +1,6 @@
 const express = require('express')
 const db = require('./db/db')
+const{ isValidTypeDist } = require('./lib/validate.js')
 
 const router = express.Router()
 
@@ -25,16 +26,20 @@ router.post('/addround', (req, res) => {
 router.post('/roundid/:id/entershot', (req, res) => {
     const roundId = req.params.id
     const { shot_from, dist_to_hole, holed} = req.body
-    return db.enterShot(shot_from, dist_to_hole, holed, roundId)
-    .then(() => {
-        return db.getRoundShots(roundId)
-            .then((shots) => {
-                const data = {round_id: roundId, shots}
-                res.render('addshot', data)
-            })
-    }).catch((err) => {
-        res.status(500).send('Oops' + err.message)
-    });
+    if (isValidTypeDist(shot_from, dist_to_hole)){
+        return db.enterShot(shot_from, dist_to_hole, holed, roundId)
+        .then(() => {
+            return db.getRoundShots(roundId)
+                .then((shots) => {
+                    const data = {round_id: roundId, shots}
+                    res.render('addshot', data)
+                })
+        }).catch((err) => {
+            res.status(500).send('Oops' + err.message)
+        });
+    } else {
+        res.send('Invalid Distance')
+    }
 })
 
 module.exports = router

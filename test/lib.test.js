@@ -42,4 +42,11 @@ describe('Check isValidTypeDist function', () => {
         expect(validate.isValidTypeDist('RC', 485)).toBeTruthy()
         expect(validate.isValidTypeDist('G', 18.5)).toBeTruthy()
     })
+
+    test("Check returns true for valid data at high end", () => {
+        expect.assertions(3)
+        expect(validate.isValidTypeDist('', 549)).toBeFalsy()
+        expect(validate.isValidTypeDist('F', null)).toBeFalsy()
+        expect(validate.isValidTypeDist(null, null)).toBeFalsy()
+    })
 })
