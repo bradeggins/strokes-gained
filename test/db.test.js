@@ -52,10 +52,10 @@ describe('Check getRoundShots function', () => {
 })
 
 describe('Check countHoles Function', () => {
-    test('Test returns correct amount of holes', () => {
+    test('Test counts the correct current hole', () => {
         return db.countHoles(3, testDb)
             .then((result) => {
-                expect(result.length).toBe(5)
+                expect(result).toBe(6)
             }).catch((err) => {
                 expect(err).toBeNull()
             });
