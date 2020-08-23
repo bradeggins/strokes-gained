@@ -16,19 +16,23 @@ function getRoundShots(roundId, db = database){
 }
 
 function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
-    return db('shots')
-        .insert({shot_from, dist_to_hole, holed})
-        .then((result) => {
-          return db('holes')
-            .insert({round_id: roundId, shot_id: result[0]})  
+    return countHoles(roundId)
+       .then((result) => {
+            let hole = result.length + 1
+            return db('shots')
+            .insert({shot_from, dist_to_hole, holed, hole_number: hole })
+            .then((result) => {
+              return db('holes')
+                .insert({round_id: roundId, shot_id: result[0]})  
+            })
         })
 }
 
 function countHoles(roundId, db = database){
     return getRoundShots(roundId)
         .then((shots) => {
-            const countShots = shots.filter(shot => shot.holed == true)
-            return countShots.length
+            const countShots = shots.filter(shot => shot.holed == 'true')
+            return countShots
         })
 }
 

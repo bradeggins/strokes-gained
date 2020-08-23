@@ -55,7 +55,7 @@ describe('Check countHoles Function', () => {
     test('Test returns correct amount of holes', () => {
         return db.countHoles(3, testDb)
             .then((result) => {
-                expect(result).toBe(5)
+                expect(result.length).toBe(5)
             }).catch((err) => {
                 expect(err).toBeNull()
             });
