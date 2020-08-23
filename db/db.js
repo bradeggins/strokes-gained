@@ -17,10 +17,10 @@ function getRoundShots(roundId, db = database){
 
 function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
     return countHoles(roundId)
-       .then((result) => {
-            let hole = result.length + 1
+       .then((hole) => {     
+            let boolHoled = validateBool(holed)
             return db('shots')
-            .insert({shot_from, dist_to_hole, holed, hole_number: hole })
+            .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole })
             .then((result) => {
               return db('holes')
                 .insert({round_id: roundId, shot_id: result[0]})  
@@ -31,9 +31,13 @@ function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
 function countHoles(roundId, db = database){
     return getRoundShots(roundId)
         .then((shots) => {
-            const countShots = shots.filter(shot => shot.holed == 'true')
-            return countShots
+            const countShots = shots.filter(shot => shot.holed == 1)
+            return countShots.length + 1
         })
+}
+
+function validateBool(holed){
+    return holed == "true" ? holed = 1: holed = ""
 }
 
 module.exports = {
