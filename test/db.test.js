@@ -127,3 +127,14 @@ describe('Check calcStrokesGained function example from ESC', () => {
     })
 })
 
+describe('ViewRounds returns the correct number of rounds', () => {
+    test("Function lists the correct number of rounds", () => {
+        return db.viewRounds(testDb)
+            .then((rounds) => {
+                expect(rounds.length).toBe(3)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+})
+
