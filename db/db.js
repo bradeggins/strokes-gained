@@ -52,10 +52,9 @@ function getAvgStrokesToHole(type, dist, db = database){
 }
 
 function calcStrokesGained(hole, nexthole){
-    if (nexthole != null){
-        return hole - nexthole - 1
-    }
+   return nexthole != null ? +(hole - nexthole - 1).toFixed(2): +(hole - 1).toFixed(2)
 }
+
 
 // function checkLastHole(){
 
