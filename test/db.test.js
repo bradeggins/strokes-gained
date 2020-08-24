@@ -62,3 +62,41 @@ describe('Check countHoles Function', () => {
     })
 })
 
+describe('Check getAvgStrokesToHole returns correct data', () => {
+    test('Test gets correct avgStrokes for T', () => {
+        return db.getAvgStrokesToHole('T', 255, testDb)
+            .then((result) => {
+                expect(result.strokesToHole).toBe(3.64)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+
+    test('Test gets correct avgStrokes for F', () => {
+        return db.getAvgStrokesToHole('F', 549, testDb)
+            .then((result) => {
+                expect(result.strokesToHole).toBe(4.94)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+
+    test('Test gets correct avgStrokes for G', () => {
+        return db.getAvgStrokesToHole('G', 27, testDb)
+            .then((result) => {
+                expect(result.strokesToHole).toBe(2.39)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+
+    test('Test gets correct avgStrokes', () => {
+        return db.getAvgStrokesToHole('RC', 366, testDb)
+            .then((result) => {
+                expect(result.strokesToHole).toBe(4.75)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+})
+

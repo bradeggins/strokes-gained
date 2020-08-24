@@ -40,9 +40,18 @@ function validateBool(holed){
     return holed == "true" ? holed = 1: holed = ""
 }
 
+function getAvgStrokesToHole(type, dist, db = database){
+    return db('data')
+        .where({ shotFrom: type, distToHole: dist})
+        .select('strokesToHole')
+        .first()
+}
+
 module.exports = {
     addRound,
     enterShot,
     getRoundShots,
-    countHoles
+    countHoles,
+    getAvgStrokesToHole
+
 }
