@@ -51,11 +51,25 @@ function getAvgStrokesToHole(type, dist, db = database){
         .first()
 }
 
+function calcStrokesGained(hole, nexthole){
+    if (nexthole != null){
+        return hole - nexthole - 1
+    }
+}
+
+// function checkLastHole(){
+
+// }
+
+
+
+
 module.exports = {
     addRound,
     enterShot,
     getRoundShots,
     countHoles,
-    getAvgStrokesToHole
+    getAvgStrokesToHole,
+    calcStrokesGained
 
 }
