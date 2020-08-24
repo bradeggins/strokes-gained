@@ -18,13 +18,17 @@ function getRoundShots(roundId, db = database){
 function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
     return countHoles(roundId)
        .then((hole) => {     
-            let boolHoled = validateBool(holed)
-            return db('shots')
-            .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole })
-            .then((result) => {
-              return db('holes')
-                .insert({round_id: roundId, shot_id: result[0]})  
-            })
+            return getAvgStrokesToHole(shot_from, dist_to_hole)
+                .then((avgStrokes) => {
+                    const {strokesToHole} = avgStrokes
+                    let boolHoled = validateBool(holed)
+                    return db('shots')
+                    .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole })
+                    .then((result) => {
+                    return db('holes')
+                        .insert({round_id: roundId, shot_id: result[0]})  
+                    })                    
+                })
         })
 }
 
