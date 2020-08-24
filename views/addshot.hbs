@@ -19,6 +19,9 @@ Add a Round
     <label for="holed">Holed?</label>
     <button type="submit">Next Shot</button>
 </form>
+<form action="/" method="GET">
+    <input type="submit" value="End Round">
+</form>
 
 {{#each shots }}
 <p>Dist: {{dist_to_hole}}, From: {{ shot_from }}, Hole: {{ hole_number }}, PGA Avg Stokes to Hole: {{ strokes_to_hole }} </p>

@@ -9,6 +9,11 @@ function addRound(round_date, course, db = database){
         .select('id')    
 }
 
+function viewRounds(db=database){
+    return db('rounds')
+        .select()
+}
+
 function getRoundShots(roundId, db = database){
     return db('shots')
         .join('holes', 'shot_id', 'id')
@@ -69,6 +74,7 @@ module.exports = {
     getRoundShots,
     countHoles,
     getAvgStrokesToHole,
-    calcStrokesGained
+    calcStrokesGained,
+    viewRounds
 
 }
