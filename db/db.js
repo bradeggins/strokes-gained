@@ -23,7 +23,7 @@ function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
                     const {strokesToHole} = avgStrokes
                     let boolHoled = validateBool(holed)
                     return db('shots')
-                    .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole })
+                    .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole, strokes_to_hole:strokesToHole })
                     .then((result) => {
                     return db('holes')
                         .insert({round_id: roundId, shot_id: result[0]})  
