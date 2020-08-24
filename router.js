@@ -1,6 +1,7 @@
 const express = require('express')
 const db = require('./db/db')
 const{ isValidTypeDist } = require('./lib/validate.js')
+const { calcStrokesGained } = require('./lib/lib.js')
 
 const router = express.Router()
 
@@ -55,9 +56,9 @@ router.post('/displayround/', (req,res) => {
     .then((shots) => {
         shots.map((shot, i, shots) => {
             if(i < shots.length - 1){
-                shot.sg = db.calcStrokesGained(shot.strokes_to_hole, shots[i + 1].strokes_to_hole)
+                shot.sg = calcStrokesGained(shot.strokes_to_hole, shots[i + 1].strokes_to_hole)
             } else {
-                shot.sg = db.calcStrokesGained(shot.strokes_to_hole)
+                shot.sg = calcStrokesGained(shot.strokes_to_hole)
             }
         })
         const viewData = {allshots: shots}

@@ -1,5 +1,6 @@
 const knex = require('knex')
 const config = require('../knexfile').development
+const { validateBool } = require('../lib/lib')
 
 const database = knex(config)
 
@@ -37,16 +38,12 @@ function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
         })
 }
 
-function countHoles(roundId, db = database){
+function countHoles(roundId){
     return getRoundShots(roundId)
         .then((shots) => {
             const countShots = shots.filter(shot => shot.holed == 1)
             return countShots.length + 1
         })
-}
-
-function validateBool(holed){
-    return holed == "true" ? holed = 1: holed = ""
 }
 
 function getAvgStrokesToHole(type, dist, db = database){
@@ -56,17 +53,6 @@ function getAvgStrokesToHole(type, dist, db = database){
         .first()
 }
 
-function calcStrokesGained(hole, nexthole){
-   return nexthole != null ? +(hole - nexthole - 1).toFixed(2): +(hole - 1).toFixed(2)
-}
-
-
-// function checkLastHole(){
-
-// }
-
-
-
 
 module.exports = {
     addRound,
@@ -74,7 +60,5 @@ module.exports = {
     getRoundShots,
     countHoles,
     getAvgStrokesToHole,
-    calcStrokesGained,
     viewRounds
-
 }

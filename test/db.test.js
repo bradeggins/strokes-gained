@@ -100,33 +100,6 @@ describe('Check getAvgStrokesToHole returns correct data', () => {
     })
 })
 
-describe('Check calcStrokesGained function example from ESC', () => {
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = db.calcStrokesGained(4.0, 3.7)
-        expect(actual).toBe(-0.70)
-    })
-
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = db.calcStrokesGained(3.7, 3.2)
-        expect(actual).toBe(-0.50)
-    })
-
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = db.calcStrokesGained(3.2, 1.8)
-        expect(actual).toBe(0.40)
-    })
-
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = db.calcStrokesGained(1.8, 0)
-        expect(actual).toBe(0.80)
-    })
-
-    test('Calculates the correct SG for hole when nexthole does not exist', () => {
-        let actual = db.calcStrokesGained(1.8)
-        expect(actual).toBe(0.80)
-    })
-})
-
 describe('ViewRounds returns the correct number of rounds', () => {
     test("Function lists the correct number of rounds", () => {
         return db.viewRounds(testDb)
