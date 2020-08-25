@@ -61,9 +61,10 @@ exports.editShot = (req,res) => {
 }
 
 exports.deleteShot = (req,res) => {
-    return db.deleteShot(id)
+    const {roundId} = req.body
+    return db.deleteShot(roundId)
         .then((result) => {
-            
+            res.json({shot: 3, deleted: true})
         }).catch((err) => {
             sendServerErr(err,res)
         });

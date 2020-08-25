@@ -17,7 +17,7 @@ router.route('/roundid/:id/entershot')
 router.route('/displayround')
     .post(displayController.displayRound)
 
-router.route('/shot/:id/editshot')
-    .post(displayController.editShot)
+router.route('/shot/:id/deleteshot')
+    .post(displayController.deleteShot)
 
 module.exports = router
