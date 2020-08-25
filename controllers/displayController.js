@@ -57,7 +57,8 @@ exports.displayRound = (req,res) => {
 
 exports.updateShot = (req,res) => {
     const roundId = req.params.id
-    const { shot_from, dist_to_hole, holed } = req.body
+    const { shot_id, shot_from, dist_to_hole, holed } = req.body
+    return db.updateShot()
     if(isValidTypeDist(shot_from, dist_to_hole)){
         return db.updateShot(shot_id, dist_to_hole, shot_from, holed,)
     } else {

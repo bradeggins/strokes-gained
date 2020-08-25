@@ -6,5 +6,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.DropColumn('strokes_to_hole')
+  return knex.schema.dropColumn('strokes_to_hole')
 };
