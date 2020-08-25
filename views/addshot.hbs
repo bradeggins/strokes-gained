@@ -1,5 +1,6 @@
 Add a Round
-<form action="/roundid/{{ round_id }}/entershot" method="post">
+
+<form action="/roundid/{{ id }}/entershot" method="post">
     <input type="radio" name="shot_from" id="shot_from_T" value="T">
     <label for="shot_from_T">Tee</label>
     <input type="radio" name="shot_from" id="shot_from_F" value="F">
@@ -23,6 +24,6 @@ Add a Round
     <input type="submit" value="End Round">
 </form>
 
-{{#each shots }}
+{{#each data }}
 <p>Dist: {{dist_to_hole}}, From: {{ shot_from }}, Hole: {{ hole_number }}, PGA Avg Stokes to Hole: {{ strokes_to_hole }} </p>
 {{/each }}

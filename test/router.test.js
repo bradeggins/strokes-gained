@@ -23,7 +23,7 @@ describe('GET /addround', () => {
     test('/addround renders a form', () => {
         expect.assertions(2)
         return request(server)
-            .get('/addround')
+            .get('/newround')
             .then((result) => {
                 const $ = cheerio.load(result.text)
                 expect($('form').attr('action')).toBe('/addround')

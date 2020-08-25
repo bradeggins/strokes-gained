@@ -1,16 +1,59 @@
 const db = require('../db/db')
+const {addStrokesGained} = require('../lib/lib')
+const{ isValidTypeDist } = require('../lib/validate.js')
+
 
 exports.selectRoundData = (req,res) => {
     return db.viewRounds()
         .then((data) => {
             res.render('dashboard', buildDisplayData(data))
         }).catch((err) => {
-            sendServerErr(err)
+            sendServerErr(err, res)
         });
 }
 
+exports.newRound = (req, res) => {
+    res.render('newround')
+}
+
 exports.addRound = (req, res) => {
-    res.render('addround')
+    const { round_date, course } = req.body
+    return db.addRound(round_date, course)
+        .then((data) => {
+            res.render('addshot', buildDisplayData(course, data[0]))
+        }).catch((err) => {
+            sendServerErr(err, res)
+        });
+}
+
+exports.enterShot = (req, res) => {
+    const roundId = req.params.id
+    const { shot_from, dist_to_hole, holed} = req.body
+    if (isValidTypeDist(shot_from, dist_to_hole)){
+        return db.createShotData(shot_from, dist_to_hole, holed, roundId)
+        .then(() => {
+            return db.getRoundShots(roundId)
+                .then((shots) => {
+                    // const data = {round_id: roundId, shots}
+                    res.render('addshot', buildDisplayData(shots, roundId))
+                })
+        }).catch((err) => {
+            sendServerErr(err, res)
+        });
+    } else {
+        res.send('Invalid Distance')
+    }
+}
+
+exports.displayRound = (req,res) => {
+        const { roundId } = req.body
+        db.getRoundShots(roundId)
+        .then((shots) => {
+            addStrokesGained(shots)
+            res.render('rounddata', buildDisplayData(shots))
+        }).catch((err) => {
+            sendServerErr(err,res)
+        });
 }
 
 
@@ -23,12 +66,13 @@ exports.addRound = (req, res) => {
 
 
 
-function buildDisplayData(data){
+function buildDisplayData(data, id){
     return {
+       id,
        data
     }
 }
 
-function sendServerErr(err){
+function sendServerErr(err, res){
     res.status(500).send('Oops ' + err.message)
 }
