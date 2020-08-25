@@ -20,7 +20,8 @@ exports.addRound = (req, res) => {
     const { round_date, course } = req.body
     return db.addRound(round_date, course)
         .then((data) => {
-            res.render('addshot', buildDisplayData(course, data[0]))
+            res.json(data)  
+            // res.render('addshot', buildDisplayData(course, data[0]))
         }).catch((err) => {
             sendServerErr(err, res)
         });
@@ -32,11 +33,8 @@ exports.enterShot = (req, res) => {
     if (isValidTypeDist(shot_from, dist_to_hole)){
         return db.createShotData(shot_from, dist_to_hole, holed, roundId)
         .then(() => {
-            return db.getRoundShots(roundId)
-                .then((shots) => {
-                    // const data = {round_id: roundId, shots}
-                    res.render('addshot', buildDisplayData(shots, roundId))
-                })
+            res.json({roundId, added: true})
+                    // res.render('addshot', { id:roundId, added: 'Shot Added' })
         }).catch((err) => {
             sendServerErr(err, res)
         });
@@ -50,7 +48,8 @@ exports.displayRound = (req,res) => {
         db.getRoundShots(roundId)
         .then((shots) => {
             addStrokesGained(shots)
-            res.render('rounddata', buildDisplayData(shots))
+            res.json(shots)
+            // res.render('rounddata', buildDisplayData(shots))
         }).catch((err) => {
             sendServerErr(err,res)
         });
