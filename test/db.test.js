@@ -1,6 +1,7 @@
 const knex = require('knex')
 const config = require('../knexfile').test
 const db = require('../db/db')
+const { getRoundShots } = require('../db/db')
 
 const testDb = knex(config)
 
@@ -26,14 +27,14 @@ describe('Check addround function', () => {
     })
 })
 
-describe('Check entershot function', () => {
+describe('Check createRoundData function', () => {
     test('Enter round adds a shot to shots table', () => {
-        return db.enterShot('F', 425, "", 3, testDb)
+        return db.createShotData('F', 425, "", 3, testDb)
             .then((result) => {
                 return db.getRoundShots(3, testDb)
-                .then((result) => {
-                    expect(result.length).toBe(21)
-                })
+                    .then((shots) => {
+                        expect(shots.length).toBe(21)
+                    })
             })
     })
 })

@@ -21,21 +21,25 @@ function getRoundShots(roundId, db = database){
         .where({round_id: roundId})
 }
 
-function enterShot(shot_from, dist_to_hole, holed, roundId, db = database){
+function createShotData(shot_from, dist_to_hole, holed, roundId, db = database){
     return countHoles(roundId)
        .then((hole) => {     
             return getAvgStrokesToHole(shot_from, dist_to_hole)
                 .then((avgStrokes) => {
                     const {strokesToHole} = avgStrokes
                     let boolHoled = validateBool(holed)
-                    return db('shots')
-                    .insert({shot_from, dist_to_hole, holed: boolHoled, hole_number: hole, strokes_to_hole:strokesToHole })
-                    .then((result) => {
-                    return db('holes')
-                        .insert({round_id: roundId, shot_id: result[0]})  
-                    })                    
+                   return insertShot(shot_from, dist_to_hole, boolHoled, hole, strokesToHole, roundId, db)                    
                 })
         })
+}
+
+function insertShot(shot_from, dist_to_hole, holed, hole_number, strokes_to_hole, round_id, db = database){
+    return db('shots')
+        .insert({shot_from, dist_to_hole, holed, hole_number, strokes_to_hole})
+        .then((result) => {
+        return db('holes')
+            .insert({round_id, shot_id: result[0]})  
+        })                    
 }
 
 function countHoles(roundId){
@@ -56,7 +60,7 @@ function getAvgStrokesToHole(type, dist, db = database){
 
 module.exports = {
     addRound,
-    enterShot,
+    createShotData,
     getRoundShots,
     countHoles,
     getAvgStrokesToHole,

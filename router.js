@@ -6,7 +6,6 @@ const { calcStrokesGained, addStrokesGained } = require('./lib/lib.js')
 const router = express.Router()
 
 router.get('/', (req,res) => {
-    let id = req.params.id
     return db.viewRounds()
         .then((data) => {
             const viewData = { rounds: data}
@@ -35,7 +34,7 @@ router.post('/roundid/:id/entershot', (req, res) => {
     const roundId = req.params.id
     const { shot_from, dist_to_hole, holed} = req.body
     if (isValidTypeDist(shot_from, dist_to_hole)){
-        return db.enterShot(shot_from, dist_to_hole, holed, roundId)
+        return db.createShotData(shot_from, dist_to_hole, holed, roundId)
         .then(() => {
             return db.getRoundShots(roundId)
                 .then((shots) => {
