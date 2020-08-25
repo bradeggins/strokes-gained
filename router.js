@@ -2,18 +2,11 @@ const express = require('express')
 const db = require('./db/db')
 const{ isValidTypeDist } = require('./lib/validate.js')
 const { calcStrokesGained, addStrokesGained } = require('./lib/lib.js')
+const displayController = require('./controllers/displayController')
 
 const router = express.Router()
 
-router.get('/', (req,res) => {
-    return db.viewRounds()
-        .then((data) => {
-            const viewData = { rounds: data}
-            res.render('dashboard', viewData)
-        }).catch((err) => {
-            res.status(500).send('Oops ' + err.message)
-        });
-})
+router.get('/', displayController.selectRoundData)
 
 router.get('/addround', (req,res) => {
     res.render('addround')

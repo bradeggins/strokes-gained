@@ -27,7 +27,7 @@ function createShotData(shot_from, dist_to_hole, holed, roundId, db = database){
             return getAvgStrokesToHole(shot_from, dist_to_hole)
                 .then((avgStrokes) => {
                     const {strokesToHole} = avgStrokes
-                    let boolHoled = validateBool(holed)
+                    const boolHoled = validateBool(holed)
                    return insertShot(shot_from, dist_to_hole, boolHoled, hole, strokesToHole, roundId, db)                    
                 })
         })

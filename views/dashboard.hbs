@@ -1,6 +1,6 @@
 <form action="/displayround/" method="POST">
 <select name="roundId" id="roundId">
-    {{#each rounds}}
+    {{#each data}}
     <option value="{{ id }}">{{ course }}, {{ round_date }}</option>
     {{/each}}
 </select>
