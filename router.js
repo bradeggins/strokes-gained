@@ -8,9 +8,7 @@ const router = express.Router()
 
 router.get('/', displayController.selectRoundData)
 
-router.get('/addround', (req,res) => {
-    res.render('addround')
-})
+router.get('/addround', displayController.addRound)
 
 router.post('/addround', (req, res) => {
     const { round_date, course } = req.body
