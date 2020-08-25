@@ -68,6 +68,19 @@ function deleteShot(shot_id, db = database){
          })
 }
 
+function updateShot(shot_id, dist_to_hole, shot_from, holed, hole_number, strokes_to_hole, db = database){
+    return db('shots')
+        .update({dist_to_hole, shot_from, holed, hole_number, strokes_to_hole})
+        .where({id:shot_id})
+}
+
+function getHoleNumber(shot_id, db = database){
+    return db('shots')
+        .select('hole_number')
+        .where({id: shot_id})
+        .first()
+}
+
 
 module.exports = {
     addRound,
@@ -76,5 +89,7 @@ module.exports = {
     countHoles,
     getAvgStrokesToHole,
     viewRounds,
-    deleteShot
+    deleteShot,
+    updateShot,
+    getHoleNumber
 }

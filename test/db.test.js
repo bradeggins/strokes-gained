@@ -127,3 +127,14 @@ describe('deleteShot deletes shot from shots', () => {
     })
 })
 
+describe('getHoleNumber returns the correct hole', () => {
+    test('Function returns hole_number', () => {
+        return db.getHoleNumber(5)
+            .then((result) => {
+                expect(result.hole_number).toBe(2)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+})
+

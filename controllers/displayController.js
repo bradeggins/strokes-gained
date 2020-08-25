@@ -39,7 +39,7 @@ exports.enterShot = (req, res) => {
             sendServerErr(err, res)
         });
     } else {
-        res.send('Invalid Distance')
+        res.json({err: 'Invalid Distance'})
     }
 }
 
@@ -55,26 +55,28 @@ exports.displayRound = (req,res) => {
         });
 }
 
-exports.editShot = (req,res) => {
-    insertshot
+exports.updateShot = (req,res) => {
+    const roundId = req.params.id
+    const { shot_from, dist_to_hole, holed } = req.body
+    if(isValidTypeDist(shot_from, dist_to_hole)){
+        return db.updateShot(shot_id, dist_to_hole, shot_from, holed,)
+    } else {
+        res.json({err: 'Invalid Distance'})
+    }
+    
 
 }
 
 exports.deleteShot = (req,res) => {
-    const {roundId} = req.body
-    return db.deleteShot(roundId)
+    const {shotId} = req.body
+    return db.deleteShot(shotId)
         .then((result) => {
+            console.log(result)
             res.json({shot: 3, deleted: true})
         }).catch((err) => {
             sendServerErr(err,res)
         });
 }
-
-
-
-
-
-
 
 
 
