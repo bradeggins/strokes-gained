@@ -1,5 +1,5 @@
 const db = require('../db/db')
-const {addStrokesGained} = require('../lib/lib')
+const { addStrokesGained } = require('../lib/lib')
 const{ isValidTypeDist } = require('../lib/validate.js')
 
 
@@ -21,7 +21,6 @@ exports.addRound = (req, res) => {
     return db.addRound(round_date, course)
         .then((data) => {
             res.json(data)  
-            // res.render('addshot', buildDisplayData(course, data[0]))
         }).catch((err) => {
             sendServerErr(err, res)
         });
@@ -34,7 +33,6 @@ exports.enterShot = (req, res) => {
         return db.createShotData(shot_from, dist_to_hole, holed, roundId, db.insertShot)
         .then(() => {
             res.json({roundId, added: true})
-                    // res.render('addshot', { id:roundId, added: 'Shot Added' })
         }).catch((err) => {
             sendServerErr(err, res)
         });
@@ -45,14 +43,13 @@ exports.enterShot = (req, res) => {
 
 exports.displayRound = (req,res) => {
         const { roundId } = req.body
-       return db.getRoundShots(roundId)
-        .then((shots) => {
-            addStrokesGained(shots)
-            res.json(shots)
-            // res.render('rounddata', buildDisplayData(shots))
-        }).catch((err) => {
-            sendServerErr(err,res)
-        });
+        return db.getRoundShots(roundId)
+            .then((shots) => {
+                addStrokesGained(shots)
+                res.json(shots)
+            }).catch((err) => {
+                sendServerErr(err,res)
+            });
 }
 
 exports.updateShot = (req,res) => {
@@ -83,9 +80,6 @@ exports.deleteShot = (req,res) => {
             sendServerErr(err,res)
         });
 }
-
-
-
 
 
 function buildDisplayData(data, id){
