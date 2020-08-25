@@ -112,3 +112,18 @@ describe('ViewRounds returns the correct number of rounds', () => {
     })
 })
 
+describe('deleteShot deletes shot from shots', () => {
+    test('Function deletes 1 row from shots', () => {
+        return db.deleteShot(5, testDb)
+            .then((result) => {
+                return db.getRoundShots(3, testDb)
+                    .then((result) => {
+                        expect(result.length).toBe(19)
+                    }).catch((err) => {
+                        expect(err).toBeNull()
+                    });
+            })        
+           
+    })
+})
+

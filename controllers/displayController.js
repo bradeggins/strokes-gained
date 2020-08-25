@@ -45,11 +45,25 @@ exports.enterShot = (req, res) => {
 
 exports.displayRound = (req,res) => {
         const { roundId } = req.body
-        db.getRoundShots(roundId)
+       return db.getRoundShots(roundId)
         .then((shots) => {
             addStrokesGained(shots)
             res.json(shots)
             // res.render('rounddata', buildDisplayData(shots))
+        }).catch((err) => {
+            sendServerErr(err,res)
+        });
+}
+
+exports.editShot = (req,res) => {
+    insertshot
+
+}
+
+exports.deleteShot = (req,res) => {
+    return db.deleteShot(id)
+        .then((result) => {
+            
         }).catch((err) => {
             sendServerErr(err,res)
         });

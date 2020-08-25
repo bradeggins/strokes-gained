@@ -57,6 +57,17 @@ function getAvgStrokesToHole(type, dist, db = database){
         .first()
 }
 
+function deleteShot(shot_id, db = database){
+    return db('holes')
+        .del()
+        .where({shot_id})
+         .then((result) => {
+             return db('shots')
+                .del()
+                .where({id: shot_id})
+         })
+}
+
 
 module.exports = {
     addRound,
@@ -64,5 +75,6 @@ module.exports = {
     getRoundShots,
     countHoles,
     getAvgStrokesToHole,
-    viewRounds
+    viewRounds,
+    deleteShot
 }
