@@ -31,7 +31,7 @@ exports.enterShot = (req, res) => {
     const roundId = req.params.id
     const { shot_from, dist_to_hole, holed} = req.body
     if (isValidTypeDist(shot_from, dist_to_hole)){
-        return db.createShotData(shot_from, dist_to_hole, holed, roundId)
+        return db.createShotData(shot_from, dist_to_hole, holed, roundId, db.insertShot)
         .then(() => {
             res.json({roundId, added: true})
                     // res.render('addshot', { id:roundId, added: 'Shot Added' })
@@ -58,21 +58,26 @@ exports.displayRound = (req,res) => {
 exports.updateShot = (req,res) => {
     const roundId = req.params.id
     const { shot_id, shot_from, dist_to_hole, holed } = req.body
-    return db.updateShot()
-    if(isValidTypeDist(shot_from, dist_to_hole)){
-        return db.updateShot(shot_id, dist_to_hole, shot_from, holed,)
-    } else {
-        res.json({err: 'Invalid Distance'})
-    }
-    
-
+    return db.getHoleNumber(shot_id)
+        .then((result) => {
+            const hole_number = result[0].hole_number
+            if(isValidTypeDist(shot_from, dist_to_hole)){
+                return db.updateShot(shot_id, dist_to_hole, shot_from, holed, hole_number)
+                    .then((result) => {
+                        res.json(result)
+                    }).catch((err) => {
+                        sendServerErr(err,res)
+                    });
+            } else {
+                res.json({err: 'Invalid Distance'})
+            }
+        })
 }
 
 exports.deleteShot = (req,res) => {
     const {shotId} = req.body
     return db.deleteShot(shotId)
         .then((result) => {
-            console.log(result)
             res.json({shot: 3, deleted: true})
         }).catch((err) => {
             sendServerErr(err,res)

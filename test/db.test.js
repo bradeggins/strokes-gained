@@ -29,7 +29,7 @@ describe('Check addround function', () => {
 
 describe('Check createRoundData function', () => {
     test('Enter round adds a shot to shots table', () => {
-        return db.createShotData('F', 425, "", 3, testDb)
+        return db.createShotData('F', 425, "", 3, db.insertShot, testDb)
             .then((result) => {
                 return db.getRoundShots(3, testDb)
                     .then((shots) => {
@@ -135,6 +135,20 @@ describe('getHoleNumber returns the correct hole', () => {
             }).catch((err) => {
                 expect(err).toBeNull()
             });
+    })
+})
+
+describe('updateShot function updates the database', () => {
+    test('Funciton updates row of db', () => {
+        return db.updateShot(3, 495, 'F', "", 5, testDb)
+        .then((result) => {
+            return db.getRoundShots(3, testDb)
+                .then((result) => {
+                    expect(result[2].dist_to_hole).toBe(495)
+                }).catch((err) => {
+                    expect(err).toBeNull()
+                });
+        })
     })
 })
 
