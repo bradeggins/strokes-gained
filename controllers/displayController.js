@@ -57,11 +57,11 @@ exports.updateShot = (req,res) => {
     const { shot_id, shot_from, dist_to_hole, holed } = req.body
     return db.getHoleNumber(shot_id)
         .then((result) => {
-            const hole_number = result[0].hole_number
+            const { hole_number } = result
             if(isValidTypeDist(shot_from, dist_to_hole)){
                 return db.updateShot(shot_id, dist_to_hole, shot_from, holed, hole_number)
                     .then((result) => {
-                        res.json(result)
+                        res.json({result, updated: true})
                     }).catch((err) => {
                         sendServerErr(err,res)
                     });

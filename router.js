@@ -20,7 +20,7 @@ router.route('/displayround')
 router.route('/shot/:id/deleteshot')
     .post(displayController.deleteShot)
 
-router.route('shot/:id/updateshot')
+router.route('/shot/:id/updateshot')
     .post(displayController.updateShot)
 
 module.exports = router
