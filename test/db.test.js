@@ -1,9 +1,20 @@
 const knex = require('knex')
 const config = require('../knexfile').test
 const db = require('../db/db')
-const { getRoundShots } = require('../db/db')
+
 
 const testDb = knex(config)
+
+const shotObj = {
+    round_date: '2020-08-27',
+    course:'Harewood',
+    shot_from: 'F',
+    dist_to_hole: 425,
+    holed: "",
+    round_id: 3,
+    hole: 5, 
+    shot_id: 5
+}
 
 beforeAll(() =>  testDb.migrate.latest())
 
@@ -18,7 +29,7 @@ describe('Check test setup', () => {
 describe('Check addround function', () => {
     test('Check addround function adds a new round', () => {
         expect.assertions(1)
-        return db.addRound('2020-08-21', 'Harewood', testDb)
+        return db.addRound(shotObj, testDb)
             .then((result) => {
                 expect(result[0]).toBe(4)            
             }).catch((err) => {
@@ -27,11 +38,11 @@ describe('Check addround function', () => {
     })
 })
 
-describe('Check createRoundData function', () => {
+describe('Check createShotData function', () => {
     test('Enter round adds a shot to shots table', () => {
-        return db.createShotData('F', 425, "", 3, db.insertShot, testDb)
+        return db.createShotData(shotObj, db.insertShot, testDb)
             .then((result) => {
-                return db.getRoundShots(3, testDb)
+                return db.getRoundShots(shotObj, testDb)
                     .then((shots) => {
                         expect(shots.length).toBe(21)
                     })
@@ -42,7 +53,7 @@ describe('Check createRoundData function', () => {
 describe('Check getRoundShots function', () => {
     test('Function returns correct round details', () => {
         expect.assertions(1)
-        return db.getRoundShots(3, testDb)
+        return db.getRoundShots(shotObj, testDb)
             .then((result) => {
                 expect(result[0].dist_to_hole).toBe(425)
             })
@@ -54,7 +65,7 @@ describe('Check getRoundShots function', () => {
 
 describe('Check countHoles Function', () => {
     test('Test counts the correct current hole', () => {
-        return db.countHoles(3, testDb)
+        return db.countHoles(shotObj, testDb)
             .then((result) => {
                 expect(result).toBe(6)
             }).catch((err) => {
@@ -116,7 +127,7 @@ describe('deleteShot deletes shot from shots', () => {
     test('Function deletes 1 row from shots', () => {
         return db.deleteShot(5, testDb)
             .then((result) => {
-                return db.getRoundShots(3, testDb)
+                return db.getRoundShots(shotObj, testDb)
                     .then((result) => {
                         expect(result.length).toBe(19)
                     }).catch((err) => {
@@ -140,11 +151,11 @@ describe('getHoleNumber returns the correct hole', () => {
 
 describe('updateShot function updates the database', () => {
     test('Funciton updates row of db', () => {
-        return db.updateShot(3, 495, 'F', "", 5, testDb)
+        return db.updateShot(shotObj, testDb)
         .then((result) => {
-            return db.getRoundShots(3, testDb)
+            return db.getRoundShots(shotObj, testDb)
                 .then((result) => {
-                    expect(result[2].dist_to_hole).toBe(495)
+                    expect(result[2].dist_to_hole).toBe(425)
                 }).catch((err) => {
                     expect(err).toBeNull()
                 });

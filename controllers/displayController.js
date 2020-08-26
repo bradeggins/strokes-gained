@@ -17,8 +17,8 @@ exports.newRound = (req, res) => {
 }
 
 exports.addRound = (req, res) => {
-    const { round_date, course } = req.body
-    return db.addRound(round_date, course)
+    
+    return db.addRound(shotObj)
         .then((data) => {
             res.json(data)  
         }).catch((err) => {

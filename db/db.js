@@ -4,7 +4,8 @@ const { validateBool } = require('../lib/lib')
 
 const database = knex(config)
 
-function addRound(round_date, course, db = database){
+function addRound(shotObj, db = database){
+    const { round_date, course } = shotObj
     return db('rounds')
         .insert({ round_date, course})
         .select('id')    
@@ -15,25 +16,28 @@ function viewRounds(db=database){
         .select()
 }
 
-function getRoundShots(roundId, db = database){
+function getRoundShots(shotObj, db = database){
+    const {round_id} = shotObj
     return db('shots')
         .join('holes', 'shot_id', 'id')
-        .where({round_id: roundId})
+        .where({round_id})
 }
 
-function createShotData(shot_from, dist_to_hole, holed, roundId, callback, db = database){
-    return countHoles(roundId)
+function createShotData(shotObj, callback, db = database){
+    const{ shot_from, dist_to_hole,hole,round_id, holed } = shotObj
+    return countHoles(shotObj)
        .then((hole) => {     
             return getAvgStrokesToHole(shot_from, dist_to_hole)
                 .then((avgStrokes) => {
                     const {strokesToHole} = avgStrokes
                     const boolHoled = validateBool(holed)
-                    return callback(shot_from, dist_to_hole, boolHoled, hole, strokesToHole, roundId, db)                    
+                    return callback(shotObj, db)                    
                 })
         })
 }
 
-function insertShot(shot_from, dist_to_hole, holed, hole_number, strokes_to_hole, round_id, db = database){
+function insertShot(shotObj, db = database){
+    const{ shot_from, dist_to_hole, holed, hole_number, strokes_to_hole, round_id } = shotObj
     return db('shots')
         .insert({shot_from, dist_to_hole, holed, hole_number, strokes_to_hole})
         .then((result) => {
@@ -42,8 +46,8 @@ function insertShot(shot_from, dist_to_hole, holed, hole_number, strokes_to_hole
         })                    
 }
 
-function countHoles(roundId){
-    return getRoundShots(roundId)
+function countHoles(shotObj){
+    return getRoundShots(shotObj)
         .then((shots) => {
             const countShots = shots.filter(shot => shot.holed == 1)
             return countShots.length + 1
@@ -68,13 +72,14 @@ function deleteShot(shot_id, db = database){
          })
 }
 
-function updateShot(shot_id, dist_to_hole, shot_from, holed, hole_number, db = database){
+function updateShot(shotObj, db = database){
+    const{shot_id, dist_to_hole, shot_from, holed, hole_number } = shotObj
     return getAvgStrokesToHole(shot_from, dist_to_hole)
         .then((avgStrokes) => {
             const {strokesToHole} = avgStrokes
             return db('shots')
                 .update({dist_to_hole, shot_from, holed, hole_number, strokes_to_hole: strokesToHole})
-                .where({id:shot_id})
+                .where({id: shot_id})
         })
     
 }
