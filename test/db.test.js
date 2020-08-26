@@ -155,7 +155,7 @@ describe('updateShot function updates the database', () => {
         .then((result) => {
             return db.getRoundShots(shotObj, testDb)
                 .then((result) => {
-                    expect(result[2].dist_to_hole).toBe(425)
+                    expect(result[4].dist_to_hole).toBe(425)
                 }).catch((err) => {
                     expect(err).toBeNull()
                 });
