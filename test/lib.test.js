@@ -1,29 +1,36 @@
 const { calcStrokesGained, validateBool } = require('../lib/lib')
 
+
 describe('Check calcStrokesGained function example from ESC', () => {
+    let hole = {
+        holed: "",
+        strokes_to_hole:4.0
+    }
+
+    let holedHole = {
+        holed: 1,
+        strokes_to_hole: 1.5
+    }
+
+    let nextHole = {
+        strokes_to_hole:3.7
+    }
+
+    let nullHole = null
+
     test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = calcStrokesGained(4.0, 3.7)
+        let actual = calcStrokesGained(hole, nextHole)
         expect(actual).toBe(-0.70)
     })
 
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = calcStrokesGained(3.7, 3.2)
-        expect(actual).toBe(-0.50)
-    })
-
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = calcStrokesGained(3.2, 1.8)
-        expect(actual).toBe(0.40)
-    })
-
-    test('Calculates the correct SG for hole, nexthole', () => {
-        let actual = calcStrokesGained(1.8, 0)
-        expect(actual).toBe(0.80)
+    test('Calculates the correct SG for hole, nexthole when last shot of hole', () => {
+        let actual = calcStrokesGained(holedHole, nextHole)
+        expect(actual).toBe(0.50)
     })
 
     test('Calculates the correct SG for hole when nexthole does not exist', () => {
-        let actual = calcStrokesGained(1.8)
-        expect(actual).toBe(0.80)
+        let actual = calcStrokesGained(holedHole, nullHole)
+        expect(actual).toBe(0.50)
     })
 })
 
