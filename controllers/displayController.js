@@ -6,19 +6,18 @@ const{ isValidTypeDist } = require('../lib/validate.js')
 exports.selectRoundData = (req,res) => {
     return db.viewRounds()
         .then((data) => {
-            res.render('dashboard', buildDisplayData(data))
+            res.json(data)
         }).catch((err) => {
             sendServerErr(err, res)
         });
 }
 
-exports.newRound = (req, res) => {
-    res.render('newround')
-}
+// exports.newRound = (req, res) => {
+//     res.render('newround')
+// }
 
 exports.addRound = (req, res) => {
-    
-    return db.addRound(shotObj)
+    return db.addRound(req.body)
         .then((data) => {
             res.json(data)  
         }).catch((err) => {

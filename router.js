@@ -4,9 +4,9 @@ const displayController = require('./controllers/displayController')
 
 const router = express.Router()
 
-router.get('/', displayController.selectRoundData)
+router.get('/selectround', displayController.selectRoundData)
 
-router.get('/newround', displayController.newRound)
+// router.get('/newround', displayController.newRound)
 
 router.route('/addround')
     .post(displayController.addRound)
