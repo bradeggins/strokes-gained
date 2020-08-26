@@ -24,13 +24,14 @@ function getRoundShots(shotObj, db = database){
 }
 
 function createShotData(shotObj, callback, db = database){
-    const{ shot_from, dist_to_hole,hole,round_id, holed } = shotObj
+    const{ shot_from, dist_to_hole, holed } = shotObj
     return countHoles(shotObj)
-       .then((hole) => {     
+       .then((hole) => {    
             return getAvgStrokesToHole(shot_from, dist_to_hole)
                 .then((avgStrokes) => {
-                    const {strokesToHole} = avgStrokes
-                    const boolHoled = validateBool(holed)
+                    shotObj.hole_number = hole
+                    shotObj.strokes_to_hole = avgStrokes.strokesToHole
+                    shotObj.holed  = validateBool(holed)
                     return callback(shotObj, db)                    
                 })
         })
@@ -46,7 +47,7 @@ function insertShot(shotObj, db = database){
         })                    
 }
 
-function countHoles(shotObj){
+function countHoles(shotObj, db = database){
     return getRoundShots(shotObj)
         .then((shots) => {
             const countShots = shots.filter(shot => shot.holed == 1)
@@ -84,15 +85,6 @@ function updateShot(shotObj, db = database){
     
 }
 
-
-function getHoleNumber(shot_id, db = database){
-    return db('shots')
-        .select('hole_number')
-        .where({id: shot_id})
-        .first()
-}
-
-
 module.exports = {
     addRound,
     createShotData,
@@ -102,6 +94,5 @@ module.exports = {
     viewRounds,
     deleteShot,
     updateShot,
-    getHoleNumber,
     insertShot
 }

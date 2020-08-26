@@ -1,26 +1,25 @@
 const express = require('express')
 const db = require('./db/db')
-const displayController = require('./controllers/displayController')
+const controller = require('./controllers/controller')
 
 const router = express.Router()
 
-router.get('/selectround', displayController.selectRoundData)
-
-// router.get('/newround', displayController.newRound)
+router.get('/selectround', controller.selectRoundData)
 
 router.route('/addround')
-    .post(displayController.addRound)
+    .post(controller.addRound)
 
-router.route('/roundid/:id/entershot')
-    .post(displayController.enterShot)
+router.route('/round/entershot')
+    .post(controller.enterShot)
 
 router.route('/displayround')
-    .post(displayController.displayRound)
+    .post(controller.displayRound)
+    
+router.route('/round/updateshot')
+    .post(controller.updateShot)
 
-router.route('/shot/:id/deleteshot')
-    .post(displayController.deleteShot)
+router.route('/round/deleteshot')
+    .post(controller.deleteShot)
 
-router.route('/shot/:id/updateshot')
-    .post(displayController.updateShot)
 
 module.exports = router
