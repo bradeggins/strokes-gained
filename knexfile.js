@@ -7,6 +7,12 @@ module.exports = {
     useNullAsDefault: true,
     connection: {
       filename: './dev.sqlite3'
+    },
+    seeds: {
+      directory: './seeds'
+    },
+    migrations: {
+      directory: './migrations'
     }
   },
 
@@ -15,6 +21,12 @@ module.exports = {
     useNullAsDefault: true,
     connection: {
       filename: ':memory:'
+    },
+    seeds: {
+      directory: './seeds'
+    },
+    migrations: {
+      directory: './migrations'
     }
   },
 
