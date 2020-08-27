@@ -1,7 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import Nav from './Nav';
+import Nav from './Nav'
+import AddRound from './AddRound';
+
 
 function App (props) {
 
@@ -9,6 +11,8 @@ function App (props) {
         <>
             <h1>App</h1>
             <Route path='/' component={Nav} />
+            <Route path='/addround' component={ AddRound } />
+
         </>
     )
 }
