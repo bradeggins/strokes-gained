@@ -1,12 +1,15 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
+
+import Nav from './Nav';
 
 function App (props) {
 
     return (
-        <div className="container">
-            <h1>Hello World!</h1>
-        </div>
-
+        <>
+            <h1>App</h1>
+            <Route path='/' component={Nav} />
+        </>
     )
 }
 
