@@ -162,7 +162,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       }).then(function (data) {
         _this.setState({
           added: true,
-          items: data
+          data: data
         });
       })["catch"](function (err) {
         console.log(err);
@@ -181,9 +181,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
   _createClass(AddRound, [{
     key: "render",
     value: function render() {
-      console.log(this.state);
-      var added = this.state.added; // redirect to shipping page after successful POST of email
-
+      var added = this.state.added;
       if (added === true) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
         push: true,
         to: {
@@ -319,14 +317,17 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       shot_from: "",
       dist_to_hole: "",
-      round_id: 3,
+      round_id: "",
       holed: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
-      var value = event.target.value;
+      var _this$setState;
 
-      _this.setState(_defineProperty({}, event.target.name, value));
+      var value = event.target.value;
+      var round_id = _this.props.location.data.data.round_id;
+
+      _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, value), _defineProperty(_this$setState, "round_id", round_id), _this$setState));
     });
 
     _defineProperty(_assertThisInitialized(_this), "port", process.env.PORT || 5000);
@@ -357,7 +358,6 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       this.setState({
         shot_from: "",
         dist_to_hole: "",
-        round_id: 3,
         holed: ""
       });
       document.getElementById('holed').checked = false;
@@ -365,7 +365,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.location.data);
+      console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group w-50 mx-auto d-flex flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {

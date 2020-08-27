@@ -19,7 +19,7 @@ class AddRound extends React.Component {
             .then((response) => {
                 return response.json()
             }).then((data) => {
-                this.setState({added: true, items: data})
+                this.setState({added: true, data})
             }).catch((err) => {
                 console.log(err)
             });
@@ -33,13 +33,11 @@ class AddRound extends React.Component {
     }
 
     render(){
-    console.log(this.state);
+   
     const {added} = this.state
-
-    // redirect to shipping page after successful POST of email
     if (added === true)  
 
-      return <Redirect push to={{ pathname: '/round/entershot', data: this.state}} />
+      return <Redirect push to={{ pathname: '/round/entershot', data:this.state}} />
 
       else
            return (

@@ -8,18 +8,19 @@ class Entershot extends React.Component {
     state = {
         shot_from: "",
         dist_to_hole: "",
-        round_id: 3,
+        round_id: "",
         holed: ""
     }
 
     handleChange = (event) => {
         const value  = event.target.value
+        const {round_id} = this.props.location.data.data
         this.setState({
-            [event.target.name]: value
+            [event.target.name]: value,
+            round_id
         })
     }
 
-  
     port  = process.env.PORT || 5000
     postDataTest = () => {
         const requestOptions = {
@@ -42,14 +43,13 @@ class Entershot extends React.Component {
         this.setState({
             shot_from: "",
             dist_to_hole: "",
-            round_id: 3,
             holed: ""
         })
         document.getElementById('holed').checked = false
     }
 
     render(){
-        console.log(this.props.location.data);
+        console.log(this.state)
         return (
             <>
                 <div className="form-group w-50 mx-auto d-flex flex-column">
@@ -75,14 +75,11 @@ class Entershot extends React.Component {
                         <label className="custom-control-label" htmlFor="holed">Holed?</label>
                     </div>
 
-        <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
+                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
                 </div>
             
             </>
                 
-                
-                
-            
         )
     }
 }
