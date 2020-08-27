@@ -7,18 +7,31 @@ class AddRound extends React.Component {
         course: "ANGC"
     }
 
+    
+    port  = process.env.PORT || 5000
+    postDataTest = () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.state)
+        };
+        fetch(`http://localhost:${this.port}/addround`, requestOptions)
+            .then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log(data)
+            }).catch((err) => {
+                console.log(err)
+            });
+    }
+
     handleChange = (event) => {
         const value  = event.target.value
         this.setState({
             [event.target.name]: value
-
         })
     }
 
-    postData = ()=> {
-        //TODO POST state to /addround
-        console.log(this.state)
-    }
     render(){
         return (
             <>
@@ -28,7 +41,7 @@ class AddRound extends React.Component {
                     <input type="text" name="course" id="course" className="form-control" placeholder="Course" value={this.state.course} onChange={this.handleChange} />
                     <label htmlFor="round_date" className="col-form-label">Round Date</label>
                     <input type="date" name="round_date" id="round_date" className="form-control" value={this.state.round_date} onChange={this.handleChange} />
-                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postData}>Add new round</button>
+                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>Add new round</button>
                 </div>
             </>
         )
