@@ -342,8 +342,69 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group w-50 mx-auto"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group w-50 mx-auto d-flex flex-column"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "shot_from",
+        className: "col-form-label-lg"
+      }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "btn-group",
+        role: "group",
+        "aria-label": "Basic example"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "T"
+      }, "Tee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "F"
+      }, "Fairway"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "G"
+      }, "Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "R"
+      }, "Rough"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "S"
+      }, "Sand"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "RC"
+      }, "Recovery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        name: "shot_from",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.handleChange,
+        value: "P"
+      }, "Penalty")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "dist_to_hole",
+        className: "col-form-label-lg"
+      }, "Distance to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "",
+        name: "dist_to_hole",
+        id: "dist_to_hole",
+        className: "form-control form-control-lg",
+        value: this.state.round_date,
+        onChange: this.handleChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "custom-control custom-checkbox"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "custom-control-input",
@@ -355,7 +416,11 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "custom-control-label",
         htmlFor: "holed"
-      }, "Holed?"))));
+      }, "Holed?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "btn btn-primary btn-lg",
+        onClick: this.postDataTest
+      }, "Add shot")));
     }
   }]);
 
