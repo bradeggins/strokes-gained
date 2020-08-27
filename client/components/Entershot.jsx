@@ -1,11 +1,14 @@
 import React from 'react';  
 
 class Entershot extends React.Component {
+    constructor(props){
+        super(props)
+    }
     
     state = {
         shot_from: "",
-        dist_to_hole: 0,
-        round_id: 0,
+        dist_to_hole: "",
+        round_id: 3,
         holed: ""
     }
 
@@ -16,22 +19,33 @@ class Entershot extends React.Component {
         })
     }
 
-    // port  = process.env.PORT || 5000
-    // postDataTest = () => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(this.state)
-    //     };
-    //     fetch(`http://localhost:${this.port}/addround`, requestOptions)
-    //         .then((response) => {
-    //             return response.json()
-    //         }).then((data) => {
-    //             console.log(data)
-    //         }).catch((err) => {
-    //             console.log(err)
-    //         });
-    // }
+  
+    port  = process.env.PORT || 5000
+    postDataTest = () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.state)
+        };
+        fetch(`http://localhost:${this.port}/round/entershot`, requestOptions)
+            .then((response) => {
+                return response.json()
+            }).then((data) => {
+                this.resetForm()               
+            }).catch((err) => {
+                console.log(err)
+            });
+    }
+
+    resetForm(){
+        this.setState({
+            shot_from: "",
+            dist_to_hole: "",
+            round_id: 3,
+            holed: ""
+        })
+        document.getElementById('holed').checked = false
+    }
 
     render(){
         console.log(this.state)
@@ -52,15 +66,15 @@ class Entershot extends React.Component {
             
                     <div className="form-group">
                         <label htmlFor="dist_to_hole" className="col-form-label-lg">Distance to Hole</label>
-                        <input type="" name="dist_to_hole" id="dist_to_hole" className="form-control form-control-lg" value={this.state.round_date} onChange={this.handleChange} />
+                        <input type="" name="dist_to_hole" id="dist_to_hole" className="form-control form-control-lg" value={this.state.dist_to_hole} onChange={this.handleChange} />
                     </div>
                     
                     <div className="custom-control custom-checkbox">
-                        <input className="custom-control-input" type="checkbox" name="holed" id="holed" value="1" onChange={this.handleChange}/>
+                        <input className="custom-control-input" type="checkbox" name="holed" id="holed" value="true" onChange={this.handleChange}/>
                         <label className="custom-control-label" htmlFor="holed">Holed?</label>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>Add shot</button>
+        <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
                 </div>
             
             </>

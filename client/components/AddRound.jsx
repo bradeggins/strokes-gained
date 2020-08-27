@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 class AddRound extends React.Component {
     state = {
@@ -32,7 +33,7 @@ class AddRound extends React.Component {
     }
 
     render(){
-        return (
+           return (
             <>
                 <div className="form-group w-50 mx-auto">
                     <h1>Add a New Round</h1>
@@ -40,7 +41,10 @@ class AddRound extends React.Component {
                     <input type="text" name="course" id="course" className="form-control" placeholder="Course" value={this.state.course} onChange={this.handleChange} />
                     <label htmlFor="round_date" className="col-form-label">Round Date</label>
                     <input type="date" name="round_date" id="round_date" className="form-control" value={this.state.round_date} onChange={this.handleChange} />
-                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>Add new round</button>
+            
+                    <Link to={'/round/entershot'}>
+                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>Add a round</button>
+                    </Link>
                 </div>
             </>
         )

@@ -97,6 +97,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -120,6 +121,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -198,11 +200,13 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
         className: "form-control",
         value: this.state.round_date,
         onChange: this.handleChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/round/entershot'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postDataTest
-      }, "Add new round")));
+      }, "Add a round"))));
     }
   }]);
 
@@ -261,7 +265,7 @@ function App(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -294,21 +298,17 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Entershot);
 
-  function Entershot() {
+  function Entershot(props) {
     var _this;
 
     _classCallCheck(this, Entershot);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
+    _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       shot_from: "",
-      dist_to_hole: 0,
-      round_id: 0,
+      dist_to_hole: "",
+      round_id: 3,
       holed: ""
     });
 
@@ -318,27 +318,41 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "port", process.env.PORT || 5000);
+
+    _defineProperty(_assertThisInitialized(_this), "postDataTest", function () {
+      var requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(_this.state)
+      };
+      fetch("http://localhost:".concat(_this.port, "/round/entershot"), requestOptions).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.resetForm();
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
   _createClass(Entershot, [{
+    key: "resetForm",
+    value: function resetForm() {
+      this.setState({
+        shot_from: "",
+        dist_to_hole: "",
+        round_id: 3,
+        holed: ""
+      });
+      document.getElementById('holed').checked = false;
+    }
+  }, {
     key: "render",
-    // port  = process.env.PORT || 5000
-    // postDataTest = () => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(this.state)
-    //     };
-    //     fetch(`http://localhost:${this.port}/addround`, requestOptions)
-    //         .then((response) => {
-    //             return response.json()
-    //         }).then((data) => {
-    //             console.log(data)
-    //         }).catch((err) => {
-    //             console.log(err)
-    //         });
-    // }
     value: function render() {
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -402,7 +416,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
         name: "dist_to_hole",
         id: "dist_to_hole",
         className: "form-control form-control-lg",
-        value: this.state.round_date,
+        value: this.state.dist_to_hole,
         onChange: this.handleChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "custom-control custom-checkbox"
@@ -411,7 +425,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
         type: "checkbox",
         name: "holed",
         id: "holed",
-        value: "1",
+        value: "true",
         onChange: this.handleChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "custom-control-label",
@@ -420,7 +434,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postDataTest
-      }, "Add shot")));
+      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))));
     }
   }]);
 
@@ -428,6 +442,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Entershot);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
