@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class AddRound extends React.Component {
     state = {
         round_date: "Date",
