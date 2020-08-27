@@ -31,7 +31,8 @@ class Entershot extends React.Component {
             .then((response) => {
                 return response.json()
             }).then((data) => {
-                this.resetForm()               
+                this.resetForm()
+                            
             }).catch((err) => {
                 console.log(err)
             });
@@ -48,7 +49,7 @@ class Entershot extends React.Component {
     }
 
     render(){
-        console.log(this.state)
+        console.log(this.props.location.data);
         return (
             <>
                 <div className="form-group w-50 mx-auto d-flex flex-column">

@@ -143,7 +143,8 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       round_date: "Date",
-      course: "ANGC"
+      course: "ANGC",
+      added: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "port", process.env.PORT || 5000);
@@ -159,7 +160,10 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       fetch("http://localhost:".concat(_this.port, "/addround"), requestOptions).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
+        _this.setState({
+          added: true,
+          items: data
+        });
       })["catch"](function (err) {
         console.log(err);
       });
@@ -177,7 +181,16 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
   _createClass(AddRound, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      console.log(this.state);
+      var added = this.state.added; // redirect to shipping page after successful POST of email
+
+      if (added === true) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+        push: true,
+        to: {
+          pathname: '/round/entershot',
+          data: this.state
+        }
+      });else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group w-50 mx-auto"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Add a New Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "course",
@@ -200,13 +213,11 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
         className: "form-control",
         value: this.state.round_date,
         onChange: this.handleChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: '/round/entershot'
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postDataTest
-      }, "Add a round"))));
+      }, "Add a round")));
     }
   }]);
 
@@ -354,7 +365,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
+      console.log(this.props.location.data);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group w-50 mx-auto d-flex flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
