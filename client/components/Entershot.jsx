@@ -1,4 +1,5 @@
 import React from 'react';  
+import Displayround from './Displayround'
 
 class Entershot extends React.Component {
     constructor(props){
@@ -21,24 +22,6 @@ class Entershot extends React.Component {
         })
     }
 
-    port  = process.env.PORT || 5000
-    postDataTest = () => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.state)
-        };
-        fetch(`http://localhost:${this.port}/round/entershot`, requestOptions)
-            .then((response) => {
-                return response.json()
-            }).then((data) => {
-                this.resetForm()
-                            
-            }).catch((err) => {
-                console.log(err)
-            });
-    }
-
     resetForm(){
         this.setState({
             shot_from: "",
@@ -49,6 +32,7 @@ class Entershot extends React.Component {
     }
 
     render(){
+        console.log(this.props.match.params.round_id);
         console.log(this.state)
         return (
             <>
@@ -77,6 +61,7 @@ class Entershot extends React.Component {
 
                     <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
                 </div>
+                <Displayround round_id={this.state.round_id}/>
             
             </>
                 
@@ -85,5 +70,6 @@ class Entershot extends React.Component {
 }
 
 export default Entershot
+
 
 

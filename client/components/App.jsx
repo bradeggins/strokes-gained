@@ -11,9 +11,9 @@ function App (props) {
     return (
         <>
             <h1>App</h1>
-            <Route path='/' component={Nav} />
+            <Route path='/' component={ Nav } />
             <Route path='/addround' component={ AddRound } />
-            <Route path='/round/entershot' component= { Entershot } />
+            <Route path='/round/:round_id/entershot' component= { Entershot } />
         </>
     )
 }
