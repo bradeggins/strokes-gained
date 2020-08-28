@@ -1,6 +1,7 @@
 import React from 'react';  
 import Displayround from './Displayround'
 import { postData } from '../api'
+import WarningBanner from './WarningBanner';
 
 class Entershot extends React.Component {
     constructor(props){
@@ -11,7 +12,9 @@ class Entershot extends React.Component {
         shot_from: "",
         dist_to_hole: "",
         round_id: "",
-        holed: ""
+        holed: "",
+        showWarning: false,
+        err: ""
     }
 
     handleChange = (event) => {
@@ -28,6 +31,9 @@ class Entershot extends React.Component {
     }
 
     setData = (data) => {
+        if(data.err != null){
+            this.setState({showWarning:true, err: data.err})
+        }
         //Round added true // err != null do something
         console.log(data)
         // this.setState(data)
@@ -35,7 +41,7 @@ class Entershot extends React.Component {
     }
 
 
-    resetForm(){
+    resetForm= () => {
         this.setState({
             shot_from: "",
             dist_to_hole: "",
@@ -44,10 +50,18 @@ class Entershot extends React.Component {
         document.getElementById('holed').checked = false
     }
 
+    resetWarning = () => {
+        this.setState({showWarning:false})
+    }
+
     render(){
+        console.log(this.state)
         return (
             <>
                 <div className="form-group w-50 mx-auto d-flex flex-column">
+                <WarningBanner warn={this.state.showWarning} err={this.state.err} onClick={this.resetWarning} />
+       
+                    
                     <label htmlFor="shot_from" className="col-form-label-lg">Shot From</label>
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <button name="shot_from" type="button" className="btn btn-primary" onClick={this.handleChange} value="T">Tee</button>

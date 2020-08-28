@@ -404,6 +404,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Displayround__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Displayround */ "./client/components/Displayround.jsx");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./client/api.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _WarningBanner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./WarningBanner */ "./client/components/WarningBanner.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -432,6 +433,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Entershot = /*#__PURE__*/function (_React$Component) {
   _inherits(Entershot, _React$Component);
 
@@ -448,7 +450,9 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       shot_from: "",
       dist_to_hole: "",
       round_id: "",
-      holed: ""
+      holed: "",
+      showWarning: false,
+      err: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -465,31 +469,49 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
-      //Round added true // err != null do something
+      if (data.err != null) {
+        _this.setState({
+          showWarning: true,
+          err: data.err
+        });
+      } //Round added true // err != null do something
+
+
       console.log(data); // this.setState(data)
 
       _this.resetForm();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "resetForm", function () {
+      _this.setState({
+        shot_from: "",
+        dist_to_hole: "",
+        holed: ""
+      });
+
+      document.getElementById('holed').checked = false;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "resetWarning", function () {
+      _this.setState({
+        showWarning: false
+      });
     });
 
     return _this;
   }
 
   _createClass(Entershot, [{
-    key: "resetForm",
-    value: function resetForm() {
-      this.setState({
-        shot_from: "",
-        dist_to_hole: "",
-        holed: ""
-      });
-      document.getElementById('holed').checked = false;
-    }
-  }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group w-50 mx-auto d-flex flex-column"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WarningBanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        warn: this.state.showWarning,
+        err: this.state.err,
+        onClick: this.resetWarning
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "shot_from",
         className: "col-form-label-lg"
       }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -597,6 +619,46 @@ var Nav = function Nav(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Nav);
+
+/***/ }),
+
+/***/ "./client/components/WarningBanner.jsx":
+/*!*********************************************!*\
+  !*** ./client/components/WarningBanner.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null;
+  }
+
+  console.log(props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert alert-dismissible alert-warning",
+    onClick: props.onClick
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "alert"
+  }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "alert-heading"
+  }, "Please check your input!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0"
+  }, props.err, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "alert-link"
+  })));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (WarningBanner);
 
 /***/ }),
 
