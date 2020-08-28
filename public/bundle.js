@@ -374,7 +374,8 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
         scope: "row"
       }, "Hole Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Distance to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Shot From(Lie)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Average Strokes to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Strokes Gained")), this.state.items.map(function (item) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          "class": "table-primary"
+          className: "table-primary",
+          key: item.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
           scope: "row"
         }, item.hole_number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.dist_to_hole), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.shot_from), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.strokes_to_hole), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.sg));
@@ -461,12 +462,13 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
       Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/round/entershot', _this.state, _this.setData);
-      _this.resetForm;
     });
 
     _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
-      //Round added true
+      //Round added true // err != null do something
       console.log(data); // this.setState(data)
+
+      _this.resetForm();
     });
 
     return _this;

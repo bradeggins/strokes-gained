@@ -39,7 +39,7 @@ class Displayround extends React.Component{
                                 <td>Strokes Gained</td>
                             </tr>
                                 {this.state.items.map(item => 
-                                    <tr class="table-primary">
+                                    <tr className="table-primary" key={item.id}>
                                         <th scope="row">{item.hole_number}</th>
                                         <td>{item.dist_to_hole}</td>
                                         <td>{item.shot_from}</td>
