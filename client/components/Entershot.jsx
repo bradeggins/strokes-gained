@@ -1,5 +1,6 @@
 import React from 'react';  
 import Displayround from './Displayround'
+import { postData } from '../api'
 
 class Entershot extends React.Component {
     constructor(props){
@@ -15,12 +16,25 @@ class Entershot extends React.Component {
 
     handleChange = (event) => {
         const value  = event.target.value
-        const {round_id} = this.props.location.data.data
+        const {round_id} = this.props.match.params
         this.setState({
             [event.target.name]: value,
             round_id
         })
     }
+
+    postForm = () => {
+        postData('/round/entershot', this.state, this.setData)
+        this.resetForm
+              
+    }
+
+    setData = (data) => {
+        //Round added true
+        console.log(data)
+        // this.setState(data)
+    }
+
 
     resetForm(){
         this.setState({
@@ -32,8 +46,6 @@ class Entershot extends React.Component {
     }
 
     render(){
-        console.log(this.props.match.params.round_id);
-        console.log(this.state)
         return (
             <>
                 <div className="form-group w-50 mx-auto d-flex flex-column">
@@ -59,9 +71,9 @@ class Entershot extends React.Component {
                         <label className="custom-control-label" htmlFor="holed">Holed?</label>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postDataTest}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
+                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
                 </div>
-                <Displayround round_id={this.state.round_id}/>
+                <Displayround round_id={this.props.match.params.round_id}/>
             
             </>
                 

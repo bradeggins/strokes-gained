@@ -31,9 +31,7 @@ class AddRound extends React.Component {
    
         const {added} = this.state
         if (added === true)  
-            //TODO redirect to round/:round_id/entershot
         return <Redirect push to={{ pathname: `/round/${this.state.round_id}/entershot`, data:this.state}} />
-
         else
             return (
                 <>
