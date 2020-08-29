@@ -12,11 +12,11 @@ class Displayround extends React.Component{
     }
 
     componentDidMount(){
-            postData('/displayround', this.state, this.setData)
+            postData('/displayround', 'POST', this.state, this.setData)
     }
    
     componentDidUpdate(prevProps, prevState){
-        if(this.state.items === prevState.items) postData('/displayround', this.state, this.setData)      
+        if(this.state.items === prevState.items) postData('/displayround', 'POST', this.state, this.setData)      
     }
 
     setData = (data) => {

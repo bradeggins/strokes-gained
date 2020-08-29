@@ -18,7 +18,7 @@ class AddRound extends React.Component {
     }
 
     postForm = () => {
-        postData('/addround', this.state, this.setData)
+        postData('/addround', 'POST', this.state, this.setData)
               
     }
 

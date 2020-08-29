@@ -1,10 +1,7 @@
-
-
-function postData (string, state, callback){
-    // console.log(callback);
+function postData (string, request, state, callback){
     const port  = process.env.PORT || 5000
     const requestOptions = {
-        method: 'POST',
+        method: request,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(state)
     };

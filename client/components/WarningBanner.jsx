@@ -5,7 +5,6 @@ function WarningBanner(props) {
       return null;
     }
   
-    console.log(props)
     return (
         <div className="alert alert-dismissible alert-warning" onClick={props.onClick}>
             <button type="button" className="close" data-dismiss="alert">&times;</button>

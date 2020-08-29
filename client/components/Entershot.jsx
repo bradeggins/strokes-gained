@@ -27,16 +27,13 @@ class Entershot extends React.Component {
     }
 
     postForm = () => {
-        postData('/round/entershot', this.state, this.setData)              
+        postData('/round/entershot', 'POST', this.state, this.setData)              
     }
 
     setData = (data) => {
         if(data.err != null){
             this.setState({showWarning:true, err: data.err})
         }
-        //Round added true // err != null do something
-        console.log(data)
-        // this.setState(data)
         this.resetForm()
     }
 

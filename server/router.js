@@ -4,7 +4,8 @@ const controller = require('./controllers/controller')
 
 const router = express.Router()
 
-router.get('/selectround', controller.selectRoundData)
+router.route('/selectround')
+    .post( controller.selectRoundData)
 
 router.route('/addround')
     .post(controller.addRound)
