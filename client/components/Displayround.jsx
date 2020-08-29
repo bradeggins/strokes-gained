@@ -7,7 +7,7 @@ class Displayround extends React.Component{
 
         this.state = {
             items: [],
-            round_id: this.props.round_id
+            round_id: this.props.round_id || this.props.match.params.round_id
         }
     }
 

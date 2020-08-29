@@ -5,6 +5,7 @@ import Nav from './Nav'
 import AddRound from './AddRound';
 import Entershot from './Entershot';
 import SelectRound from './SelectRound';
+import Displayround from './Displayround';
 
 
 function App (props) {
@@ -16,6 +17,7 @@ function App (props) {
             <Route path='/addround' component={ AddRound } />
             <Route path='/round/:round_id/entershot' component= { Entershot } />
             <Route path='/selectround' component= { SelectRound } />
+            <Route exact path='/:round_id/displayround' component= { Displayround } />
         </>
     )
 }

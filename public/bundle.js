@@ -263,6 +263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddRound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddRound */ "./client/components/AddRound.jsx");
 /* harmony import */ var _Entershot__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Entershot */ "./client/components/Entershot.jsx");
 /* harmony import */ var _SelectRound__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SelectRound */ "./client/components/SelectRound.jsx");
+/* harmony import */ var _Displayround__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Displayround */ "./client/components/Displayround.jsx");
+
 
 
 
@@ -283,6 +285,10 @@ function App(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/selectround",
     component: _SelectRound__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/:round_id/displayround",
+    component: _Displayround__WEBPACK_IMPORTED_MODULE_6__["default"]
   }));
 }
 
@@ -352,7 +358,7 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
 
     _this.state = {
       items: [],
-      round_id: _this.props.round_id
+      round_id: _this.props.round_id || _this.props.match.params.round_id
     };
     return _this;
   }
