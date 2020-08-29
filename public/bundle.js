@@ -398,7 +398,9 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
           scope: "row"
         }, item.hole_number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.dist_to_hole), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.shot_from), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.strokes_to_hole), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.sg));
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RenderLineChart__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RenderLineChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        round: this.state
+      })));
     }
   }]);
 
@@ -673,65 +675,29 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-var data = [{
-  name: 'Page A',
-  uv: 4000,
-  pv: 2400,
-  amt: 2400
-}, {
-  name: 'Page B',
-  uv: 3000,
-  pv: 1398,
-  amt: 2210
-}, {
-  name: 'Page C',
-  uv: 2000,
-  pv: 9800,
-  amt: 2290
-}, {
-  name: 'Page D',
-  uv: 2780,
-  pv: 3908,
-  amt: 2000
-}, {
-  name: 'Page E',
-  uv: 1890,
-  pv: 4800,
-  amt: 2181
-}, {
-  name: 'Page F',
-  uv: 2390,
-  pv: 3800,
-  amt: 2500
-}, {
-  name: 'Page G',
-  uv: 3490,
-  pv: 4300,
-  amt: 2100
-}];
 
 var RenderLineChart = /*#__PURE__*/function (_PureComponent) {
   _inherits(RenderLineChart, _PureComponent);
 
   var _super = _createSuper(RenderLineChart);
 
-  function RenderLineChart() {
+  function RenderLineChart(props) {
     _classCallCheck(this, RenderLineChart);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(RenderLineChart, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
-        width: 500,
-        height: 300,
-        data: data,
+      console.log(this.props.round.items);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ResponsiveContainer"], {
+        width: 700,
+        height: "80%"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
+        data: this.props.round.items,
         margin: {
           top: 5,
           right: 30,
@@ -741,26 +707,22 @@ var RenderLineChart = /*#__PURE__*/function (_PureComponent) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], {
-        dataKey: "name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+        dataKey: "hole_number"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
+        dataKey: "sg"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
         type: "monotone",
-        dataKey: "pv",
-        stroke: "#8884d8",
+        dataKey: "sg",
+        stroke: "#008cba",
         activeDot: {
           r: 8
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
-        type: "monotone",
-        dataKey: "uv",
-        stroke: "#82ca9d"
-      }));
+      })));
     }
   }]);
 
   return RenderLineChart;
 }(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
-
-_defineProperty(RenderLineChart, "jsfiddleUrl", 'https://jsfiddle.net/alidingling/xqjtetw0/');
 
 
 

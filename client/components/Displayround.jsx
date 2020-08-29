@@ -54,7 +54,7 @@ class Displayround extends React.Component{
                     </table> 
                 </div>
                 
-                <RenderLineChart />
+                <RenderLineChart round={this.state}/>
                 
             </div>
         </>
