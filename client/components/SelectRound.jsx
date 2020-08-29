@@ -19,7 +19,6 @@ class SelectRound extends React.Component {
 
     
     render(){
-        console.log(this.state)
         return(
             <>
                 <div className="btn-group" role="group" aria-label="Button group with nested dropdown">

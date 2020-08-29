@@ -1,4 +1,5 @@
 import React from 'react';
+import RenderLineChart from './RenderLineChart';
 import { postData } from '../api'
 
 class Displayround extends React.Component{
@@ -27,8 +28,10 @@ class Displayround extends React.Component{
 
     render(){
         return(
+            <>
             <div className="w-50 mx-auto">
-                <h1>Round Entries</h1>
+                <div className="round-table">
+                    <h1>Round Entries</h1>
                     <table className="table table-hover">
                         <tbody>
                             <tr>
@@ -49,7 +52,12 @@ class Displayround extends React.Component{
                                 )}
                         </tbody>
                     </table> 
+                </div>
+                
+                <RenderLineChart />
+                
             </div>
+        </>
         )
     }
 }
