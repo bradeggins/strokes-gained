@@ -69,11 +69,11 @@ exports.deleteShot = (req,res) => {
 }
 
 exports.analyseShots = (req,res) => {
-    const {stat_type, round_group} = req.body
+    const {stat_type, round_group, sga_dist} = req.body
     return db.analyseShots()
         .then((shots) => {
             addStrokesGained(shots)
-            let sum = chooseFilter(shots, stat_type).toFixed(2)
+            let sum = chooseFilter(shots, stat_type, sga_dist).toFixed(2)
             console.log(sum)
         }).catch((err) => {
             sendServerErr(err, res)

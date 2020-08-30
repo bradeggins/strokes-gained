@@ -32,12 +32,24 @@ function strokesGainedAroundTheGreen(shots){
 }
 
 function sumSG(shots){
+    console.log(shots);
     return shots.reduce((acc, value) => {
         return acc += value.sg
     }, 0)
 }
 
-function chooseFilter(shots, stat_type){
+function strokesGainedApproach(shots, sga_dist){
+    let startRange = parseInt(sga_dist)
+    let endRange = startRange + 25
+    return shots.filter(shot => shot.dist_to_hole > sga_dist 
+        && shot.dist_to_hole < endRange 
+        && shot.shot_from != "G"
+        || (shot.shot_from = "T" && shot.shot_dist < 200))
+}
+
+
+
+function chooseFilter(shots, stat_type, sga_dist){
     switch (stat_type) {
         case "sgp": 
             let sgp = strokesGainedPutting(shots)
@@ -51,6 +63,9 @@ function chooseFilter(shots, stat_type){
         case "sgatg":
             let sgatg = strokesGainedAroundTheGreen(shots)
             return sumSG(sgatg)
+        case "sga":
+            let sga = strokesGainedApproach(shots, sga_dist)
+            return sumSG(sga)
        
         default: return sumSG(shots)
     }

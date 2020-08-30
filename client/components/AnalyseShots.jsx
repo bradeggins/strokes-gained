@@ -53,13 +53,13 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sga_dist">Strokes Gained Approach</label>
                     <select onChange={this.handleChange} className="form-control" id="sga_dist" name="sga_dist" disabled>
-                        <option value="sga50">50-75</option>
-                        <option value="sga75">75-100</option>
-                        <option value="sga100">100-125</option>
-                        <option value="sga125">125-150</option>
-                        <option value="sga150">150-175</option>
-                        <option value="sga175">175-200</option>
-                        <option value="sga200">200 +</option>
+                        <option value="50" selected>50-75</option>
+                        <option value="75">75-100</option>
+                        <option value="100">100-125</option>
+                        <option value="125">125-150</option>
+                        <option value="150">150-175</option>
+                        <option value="175">175-200</option>
+                        <option value="200">200 +</option>
                     </select>
                 </div>
                 <div className="form-group">
