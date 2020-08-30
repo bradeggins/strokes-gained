@@ -7,6 +7,7 @@ import Entershot from './Entershot';
 import SelectRound from './SelectRound';
 import Displayround from './Displayround';
 import RenderLineChart from './RenderLineChart';
+import AnalyseShots from './AnalyseShots';
 
 
 function App (props) {
@@ -20,6 +21,7 @@ function App (props) {
             <Route path='/selectround' component= { SelectRound } />
             <Route exact path='/:round_id/displayround' component= { Displayround } />
             <Route path="/chart" component={RenderLineChart} />
+            <Route exact path='/analyseshots' component={ AnalyseShots } />
         </>
     )
 }
