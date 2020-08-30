@@ -15,8 +15,12 @@ function addStrokesGained(shots){
 
 }
 
-function strokesGainedPutting(shots){
-    return shots.filter(shot => shot.shot_from == "G")
+function strokesGainedPutting(shots, sgp_dist){
+    let distances = [[0,1.5], [1.5,3], [3,5], [5,7], [7,10], [10,15], [15,27]]
+    console.log(distances[parseFloat(sgp_dist)][0])
+    return shots.filter(shot => shot.shot_from == "G" 
+    && shot.dist_to_hole >= distances[parseFloat(sgp_dist)][0] 
+    && shot.dist_to_hole <= distances[parseFloat(sgp_dist)][1])
 }
 
 function strokesGainedOffTheTee(shots){
@@ -49,10 +53,10 @@ function strokesGainedApproach(shots, sga_dist){
 
 
 
-function chooseFilter(shots, stat_type, sga_dist){
+function chooseFilter(shots, stat_type, sga_dist, sgp_dist){
     switch (stat_type) {
         case "sgp": 
-            let sgp = strokesGainedPutting(shots)
+            let sgp = strokesGainedPutting(shots, sgp_dist)
             return sumSG(sgp);
         case "sgt2g":
             let sgt2g = strokesGainedTeeToGreen(shots)
@@ -72,17 +76,20 @@ function chooseFilter(shots, stat_type, sga_dist){
 }
 
 
-
 function validateBool(holed){
     return holed == "true" ? holed = 1: holed = ""
 }
-
-
 
 
  module.exports = {
      calcStrokesGained,
      validateBool,
      addStrokesGained,
-     chooseFilter
+     chooseFilter,
+     strokesGainedPutting,
+     strokesGainedOffTheTee,
+     strokesGainedTeeToGreen,
+     strokesGainedAroundTheGreen,
+     sumSG,
+     strokesGainedApproach
  }
