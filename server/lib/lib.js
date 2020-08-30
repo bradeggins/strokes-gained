@@ -27,7 +27,7 @@ function strokesGainedOffTheTee(shots){
 }
 
 function strokesGainedTeeToGreen(shots){
-    return shots.filter(shot => shot.shot_from == "T" && shot.dist_to_hole > 200 || shot.shot_from != "G")
+    return shots.filter(shot => (shot.shot_from == "T" && shot.dist_to_hole > 200) && shot.shot_from != "G")
 }
 
 function strokesGainedAroundTheGreen(shots){
@@ -41,12 +41,13 @@ function sumSG(shots){
 }
 
 function strokesGainedApproach(shots, sga_dist){
-    let startRange = parseInt(sga_dist)
-    let endRange = startRange + 25
+    let endRange = parseInt(sga_dist) + 25
     return shots.filter(shot => shot.dist_to_hole > sga_dist 
         && shot.dist_to_hole < endRange 
         && shot.shot_from != "G"
-        || (shot.shot_from = "T" && shot.shot_dist < 200))
+        || (shot.shot_from == "T" && shot.dist_to_hole < 200
+        && shot.dist_to_hole > sga_dist
+        && shot.dist_to_hole < endRange))
 }
 
 

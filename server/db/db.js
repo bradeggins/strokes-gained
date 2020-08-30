@@ -91,8 +91,6 @@ function analyseShots(db = database){
            
 }
 
-// SELECT * from SHOTS
-
 module.exports = {
     addRound,
     createShotData,

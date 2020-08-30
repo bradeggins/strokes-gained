@@ -1,8 +1,28 @@
+const knex = require('knex')
+const config = require('../../knexfile').test
+const db = require('../db/db')
+
 const { calcStrokesGained, validateBool, chooseFilter, 
     strokesGainedPutting, strokesGainedOffTheTee, strokesGainedTeeToGreen,
 strokesGainedAroundTheGreen, sumSG, strokesGainedApproach } = require('../lib/lib')
 
-const testdata = require('./libtestdata')
+const testDb = knex(config)
+
+const shotObj = {
+    round_date: '2020-08-27',
+    course:'Harewood',
+    shot_from: 'F',
+    dist_to_hole: 425,
+    holed: "",
+    round_id: 3,
+    hole: 5, 
+    shot_id: 5
+}
+
+beforeAll(() =>  testDb.migrate.latest())
+
+afterEach(() => testDb.seed.run())
+
 
 describe('Check calcStrokesGained function example from ESC', () => {
     let hole = {
@@ -56,45 +76,89 @@ describe('Check correct funtion for filtering shot data', () => {
    })
 
    test('Strokes gained putting returns correct number of items for range', () => {
-        let actual = strokesGainedPutting(testdata, 2)
-        expect(actual.length).toBe(2)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedPutting(shots, 2)
+                expect(actual.length).toBe(2)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
    })
 
    test('Strokes gained putting returns correct number of items for range', () => {
-    let actual = strokesGainedPutting(testdata, 6)
-    expect(actual.length).toBe(0)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedPutting(shots, 6)
+                expect(actual.length).toBe(0)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
     test('Strokes gained putting returns correct number of items for range', () => {
-        let actual = strokesGainedPutting(testdata, 0)
-        expect(actual[3].id).toBe(20)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedPutting(shots, 0)
+                expect(actual[3].id).toBe(20)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
     test('Strokes gained off the tee returns correct data', () => {
-        let actual = strokesGainedOffTheTee(testdata)
-        expect(actual.length).toBe(4)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedOffTheTee(shots)
+                expect(actual.length).toBe(4)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
     test('Strokes gained off the tee returns correct data', () => {
-        let actual = strokesGainedOffTheTee(testdata)
-        expect(actual[3].dist_to_hole).toBe(451)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedOffTheTee(shots)
+                expect(actual[3].dist_to_hole).toBe(451)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
     test('Strokes gained Tee to Green returns correct data', () => {
-        let actual = strokesGainedTeeToGreen(testdata)
-        expect(actual.length).toBe(12)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedTeeToGreen(shots)
+                expect(actual.length).toBe(12)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
     test('Strokes gained Tee to Green excludes tee shot < 200m', () => {
-        let shots = [{shot_from: "T", dist_to_hole: 100}, {shot_from: "F", dist_to_hole: 150}]
+        let shots = [{shot_from: "T", dist_to_hole: 201}, {shot_from: "F", dist_to_hole: 150}]
         let actual = strokesGainedTeeToGreen(shots)
-        console.log(actual);
         expect(actual.length).toBe(1)
     })
 
     test('Strokes gained around the green', () => {
-        let actual = strokesGainedAroundTheGreen(testdata)
-        expect(actual.length).toBe(2)
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedAroundTheGreen(shots)
+                expect(actual.length).toBe(2)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
+
+    test('Strokes gained approach returns correct shots for range', () => {
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedApproach(shots, 75)
+                expect(actual.length).toBe(1)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
     })
 
    
