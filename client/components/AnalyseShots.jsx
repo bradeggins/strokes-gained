@@ -13,7 +13,7 @@ class AnalyseShots extends React.Component {
     handleChange = (event) => {
         const value  = event.target.value
         if (value == "sga" || value == "sgp") this.allowDistanceSelect(value)
-        
+    
         this.setState({
             [event.target.name]: value,
         })
@@ -21,7 +21,7 @@ class AnalyseShots extends React.Component {
     }
 
     allowDistanceSelect = (id) => {
-        document.getElementById(id).removeAttribute("disabled")
+        document.getElementById(`${id}_dist`).removeAttribute("disabled")
     }
   
     postForm = () => {
@@ -52,7 +52,7 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sga_dist">Strokes Gained Approach</label>
                     <select onChange={this.handleChange} className="form-control" id="sga_dist" name="sga_dist" disabled>
-                        <option value="50" selected>50-75</option>
+                        <option defaultValue="50">50-75</option>
                         <option value="75">75-100</option>
                         <option value="100">100-125</option>
                         <option value="125">125-150</option>
@@ -64,7 +64,7 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sgp_dist">Strokes Gained Putting</label>
                     <select onChange={this.handleChange} className="form-control" id="sgp_dist" name="sgp_dist" disabled>
-                        <option value="0" selected>0-1.5m (0-5ft)</option>
+                        <option defaultValue="0">0-1.5m (0-5ft)</option>
                         <option value="1">1.5-3m (5-10ft)</option>
                         <option value="2">3-5m (10-15ft)</option>
                         <option value="3">5-7m (15-20ft)</option>

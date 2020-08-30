@@ -311,14 +311,13 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       var value = event.target.value;
-      console.log(value);
-      if (value == "sga") _this.allowStrokesGainedApproach();
+      if (value == "sga" || value == "sgp") _this.allowDistanceSelect(value);
 
       _this.setState(_defineProperty({}, event.target.name, value));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "allowStrokesGainedApproach", function () {
-      document.getElementById('sga_dist').removeAttribute("disabled");
+    _defineProperty(_assertThisInitialized(_this), "allowDistanceSelect", function (id) {
+      document.getElementById("".concat(id, "_dist")).removeAttribute("disabled");
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
@@ -370,20 +369,44 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         name: "sga_dist",
         disabled: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga50"
+        defaultValue: "50"
       }, "50-75"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga75"
+        value: "75"
       }, "75-100"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga100"
+        value: "100"
       }, "100-125"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga125"
+        value: "125"
       }, "125-150"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga150"
+        value: "150"
       }, "150-175"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga175"
+        value: "175"
       }, "175-200"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "sga200"
+        value: "200"
       }, "200 +"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "sgp_dist"
+      }, "Strokes Gained Putting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.handleChange,
+        className: "form-control",
+        id: "sgp_dist",
+        name: "sgp_dist",
+        disabled: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        defaultValue: "0"
+      }, "0-1.5m (0-5ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1"
+      }, "1.5-3m (5-10ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "2"
+      }, "3-5m (10-15ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "3"
+      }, "5-7m (15-20ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "4"
+      }, "7-10m (20-30ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "5"
+      }, "10m-15m (30-50ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "6"
+      }, "15m + (50ft +)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "round_group"

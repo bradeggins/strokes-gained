@@ -17,7 +17,6 @@ function addStrokesGained(shots){
 
 function strokesGainedPutting(shots, sgp_dist){
     let distances = [[0,1.5], [1.5,3], [3,5], [5,7], [7,10], [10,15], [15,27]]
-    console.log(distances[parseFloat(sgp_dist)][0])
     return shots.filter(shot => shot.shot_from == "G" 
     && shot.dist_to_hole >= distances[parseFloat(sgp_dist)][0] 
     && shot.dist_to_hole <= distances[parseFloat(sgp_dist)][1])
@@ -28,7 +27,7 @@ function strokesGainedOffTheTee(shots){
 }
 
 function strokesGainedTeeToGreen(shots){
-    return shots.filter(shot => shot.shot_from != "G" || (shot.shot_from == "T" && shot.dist_to_hole > 200))
+    return shots.filter(shot => shot.shot_from == "T" && shot.dist_to_hole > 200 || shot.shot_from != "G")
 }
 
 function strokesGainedAroundTheGreen(shots){
@@ -36,7 +35,6 @@ function strokesGainedAroundTheGreen(shots){
 }
 
 function sumSG(shots){
-    console.log(shots);
     return shots.reduce((acc, value) => {
         return acc += value.sg
     }, 0)

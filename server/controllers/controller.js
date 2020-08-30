@@ -6,6 +6,7 @@ const{ isValidTypeDist } = require('../lib/validate.js')
 exports.selectRoundData = (req,res) => {
     return db.viewRounds()
         .then((data) => {
+            console.log(data)
             res.json({rounds: data})
         }).catch((err) => {
             sendServerErr(err, res)
@@ -74,7 +75,7 @@ exports.analyseShots = (req,res) => {
         .then((shots) => {
             addStrokesGained(shots)
             let sum = chooseFilter(shots, stat_type, sga_dist, sgp_dist).toFixed(2)
-            console.log(sum)
+            res.json({sg: sum})
         }).catch((err) => {
             sendServerErr(err, res)
         });
