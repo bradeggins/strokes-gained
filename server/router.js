@@ -22,5 +22,8 @@ router.route('/round/updateshot')
 router.route('/round/deleteshot')
     .post(controller.deleteShot)
 
+router.route('/analyseshots')
+    .post(controller.analyseShots)
+
 
 module.exports = router

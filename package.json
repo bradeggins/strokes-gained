@@ -9,7 +9,8 @@
     "dev": "run-p client server",
     "webpack": "webpack",
     "client": "webpack --watch",
-    "server": "node server"
+    "server": "node server",
+    "omg": "nodemon server"
   },
   "author": "",
   "license": "ISC",

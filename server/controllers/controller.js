@@ -1,5 +1,5 @@
 const db = require('../db/db')
-const { addStrokesGained } = require('../lib/lib')
+const { addStrokesGained, chooseFilter } = require('../lib/lib')
 const{ isValidTypeDist } = require('../lib/validate.js')
 
 
@@ -65,6 +65,18 @@ exports.deleteShot = (req,res) => {
             res.json({shot: 3, deleted: true})
         }).catch((err) => {
             sendServerErr(err,res)
+        });
+}
+
+exports.analyseShots = (req,res) => {
+    const {stat_type, round_group} = req.body
+    return db.analyseShots()
+        .then((shots) => {
+            addStrokesGained(shots)
+            let sum = chooseFilter(shots, stat_type).toFixed(2)
+            console.log(sum)
+        }).catch((err) => {
+            sendServerErr(err, res)
         });
 }
 

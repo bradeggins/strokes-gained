@@ -15,14 +15,59 @@ function addStrokesGained(shots){
 
 }
 
- function validateBool(holed){
+function strokesGainedPutting(shots){
+    return shots.filter(shot => shot.shot_from == "G")
+}
+
+function strokesGainedOffTheTee(shots){
+    return shots.filter(shot => shot.shot_from == "T" && shot.dist_to_hole > 200)
+}
+
+function strokesGainedTeeToGreen(shots){
+    return shots.filter(shot => shot.shot_from != "G" || (shot.shot_from == "T" && shot.dist_to_hole > 200))
+}
+
+function strokesGainedAroundTheGreen(shots){
+    return shots.filter(shot => shot.shot_from != "G" && shot.dist_to_hole < 30)
+}
+
+function sumSG(shots){
+    return shots.reduce((acc, value) => {
+        return acc += value.sg
+    }, 0)
+}
+
+function chooseFilter(shots, stat_type){
+    switch (stat_type) {
+        case "sgp": 
+            let sgp = strokesGainedPutting(shots)
+            return sumSG(sgp);
+        case "sgt2g":
+            let sgt2g = strokesGainedTeeToGreen(shots)
+            return sumSG(sgt2g);
+        case "sgott":
+            let sgt = strokesGainedOffTheTee(shots)
+            return sumSG(sgt);
+        case "sgatg":
+            let sgatg = strokesGainedAroundTheGreen(shots)
+            return sumSG(sgatg)
+       
+        default: return sumSG(shots)
+    }
+}
+
+
+
+function validateBool(holed){
     return holed == "true" ? holed = 1: holed = ""
 }
+
 
 
 
  module.exports = {
      calcStrokesGained,
      validateBool,
-     addStrokesGained
+     addStrokesGained,
+     chooseFilter
  }

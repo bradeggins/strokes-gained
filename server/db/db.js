@@ -66,11 +66,11 @@ function deleteShot(shot_id, db = database){
     return db('holes')
         .del()
         .where({shot_id})
-         .then((result) => {
+        .then((result) => {
              return db('shots')
                 .del()
                 .where({id: shot_id})
-         })
+        })
 }
 
 function updateShot(shotObj, db = database){
@@ -85,6 +85,14 @@ function updateShot(shotObj, db = database){
     
 }
 
+function analyseShots(db = database){
+    return db('shots')
+        .select()
+           
+}
+
+// SELECT * from SHOTS
+
 module.exports = {
     addRound,
     createShotData,
@@ -94,5 +102,6 @@ module.exports = {
     viewRounds,
     deleteShot,
     updateShot,
-    insertShot
+    insertShot,
+    analyseShots
 }

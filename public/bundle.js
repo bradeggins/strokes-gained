@@ -312,8 +312,13 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       var value = event.target.value;
       console.log(value);
+      if (value == "sga") _this.allowStrokesGainedApproach();
 
       _this.setState(_defineProperty({}, event.target.name, value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "allowStrokesGainedApproach", function () {
+      document.getElementById('sga_dist').removeAttribute("disabled");
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
@@ -353,20 +358,32 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
       }, "Strokes Gained Putting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sgatg"
       }, "Strokes Gained Around the Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "sga"
+      }, "Strokes Gained Approach"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "sga_dist"
+      }, "Strokes Gained Approach"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.handleChange,
+        className: "form-control",
+        id: "sga_dist",
+        name: "sga_dist",
+        disabled: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga50"
-      }, "Strokes Gained Approach 50-75"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "50-75"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga75"
-      }, "Strokes Gained Approach 75-100"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "75-100"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga100"
-      }, "Strokes Gained Approach 100-125"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "100-125"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga125"
-      }, "Strokes Gained Approach 125-150"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "125-150"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga150"
-      }, "Strokes Gained Approach 150-175"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "150-175"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga175"
-      }, "Strokes Gained Approach 175-200"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "175-200"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sga200"
-      }, "Strokes Gained Approach 200 +"))), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "200 +"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "round_group"
