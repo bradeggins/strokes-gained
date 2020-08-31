@@ -347,6 +347,8 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         id: "stat_type",
         name: "stat_type"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        defaultValue: "select"
+      }, "Select a Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sgt"
       }, " Strokes Gained Total"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "sgott"
@@ -396,7 +398,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         disabled: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         defaultValue: "select"
-      }, "Select Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "Select a Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "0"
       }, "0-1.5m (0-5ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "1"
@@ -420,6 +422,8 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         id: "round_group",
         name: "round_group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        defaultValue: "select"
+      }, "Select a Round History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "all"
       }, "All Rounds"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "1"

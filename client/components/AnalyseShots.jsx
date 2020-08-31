@@ -41,6 +41,7 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="stat_type">Statistic Type</label>
                     <select onChange={this.handleChange} className="form-control" id="stat_type" name="stat_type">
+                        <option defaultValue="select">Select a Type</option>
                         <option value='sgt'> Strokes Gained Total</option>
                         <option value="sgott">Strokes Gained Off the Tee</option>
                         <option value="sgt2g">Strokes Gained Tee to Green</option>
@@ -65,7 +66,7 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sgp_dist">Strokes Gained Putting</label>
                     <select onChange={this.handleChange} className="form-control" id="sgp_dist" name="sgp_dist" disabled>
-                        <option defaultValue="select">Select Range</option>
+                        <option defaultValue="select">Select a Range</option>
                         <option value="0">0-1.5m (0-5ft)</option>
                         <option value="1">1.8-3m (6-10ft)</option>
                         <option value="2">3.3-4.5m (11-15ft)</option>
@@ -78,6 +79,7 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="round_group">Rounds</label>
                     <select onChange={this.handleChange} className="form-control" id="round_group" name="round_group">
+                        <option defaultValue="select">Select a Round History</option>
                         <option value="all">All Rounds</option>
                         <option value="1">Last Round</option>
                         <option value="5">Last 5 rounds</option>

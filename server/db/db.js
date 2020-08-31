@@ -87,8 +87,8 @@ function updateShot(shotObj, db = database){
 
 function analyseShots(db = database){
     return db('shots')
-        .select()
-           
+        .join('holes', 'holes.shot_id', 'shots.id')
+        .select()         
 }
 
 module.exports = {

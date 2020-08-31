@@ -52,26 +52,36 @@ function strokesGainedApproach(shots, sga_dist){
 
 
 
-function chooseFilter(shots, stat_type, sga_dist, sgp_dist){
+function chooseFilter(shots, obj){
+    const {stat_type, round_group, sga_dist, sgp_dist} = obj
+    let shotHistory = roundHistory(shots, round_group)
     switch (stat_type) {
         case "sgp": 
-            let sgp = strokesGainedPutting(shots, sgp_dist)
+            let sgp = strokesGainedPutting(shotHistory, sgp_dist)
             return sumSG(sgp);
         case "sgt2g":
-            let sgt2g = strokesGainedTeeToGreen(shots)
+            let sgt2g = strokesGainedTeeToGreen(shotHistorys)
             return sumSG(sgt2g);
         case "sgott":
-            let sgt = strokesGainedOffTheTee(shots)
+            let sgt = strokesGainedOffTheTee(shotHistorys)
             return sumSG(sgt);
         case "sgatg":
-            let sgatg = strokesGainedAroundTheGreen(shots)
+            let sgatg = strokesGainedAroundTheGreen(shotHistorys)
             return sumSG(sgatg)
         case "sga":
-            let sga = strokesGainedApproach(shots, sga_dist)
+            let sga = strokesGainedApproach(shotHistorys, sga_dist)
             return sumSG(sga)
-       
-        default: return sumSG(shots)
+        default: return sumSG(shotHistorys)
     }
+}
+
+function roundHistory(shots, history){
+    if(history == "all") {
+        return shots  
+    } else {
+        let lastRound = shots[shots.length - 1].round_id;
+        return shots.filter(shot => shot.round_id > lastRound - Number(history))
+    }       
 }
 
 
