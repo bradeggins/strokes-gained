@@ -60,18 +60,18 @@ function chooseFilter(shots, obj){
             let sgp = strokesGainedPutting(shotHistory, sgp_dist)
             return sumSG(sgp);
         case "sgt2g":
-            let sgt2g = strokesGainedTeeToGreen(shotHistorys)
+            let sgt2g = strokesGainedTeeToGreen(shotHistory)
             return sumSG(sgt2g);
         case "sgott":
-            let sgt = strokesGainedOffTheTee(shotHistorys)
+            let sgt = strokesGainedOffTheTee(shotHistory)
             return sumSG(sgt);
         case "sgatg":
-            let sgatg = strokesGainedAroundTheGreen(shotHistorys)
+            let sgatg = strokesGainedAroundTheGreen(shotHistory)
             return sumSG(sgatg)
         case "sga":
-            let sga = strokesGainedApproach(shotHistorys, sga_dist)
+            let sga = strokesGainedApproach(shotHistory, sga_dist)
             return sumSG(sga)
-        default: return sumSG(shotHistorys)
+        default: return sumSG(shotHistory)
     }
 }
 

@@ -22,7 +22,7 @@ class SelectRound extends React.Component {
         return(
             <>
                 <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" className="btn btn-primary">Select a Round</button>
+                    <button type="button" className="btn btn-primary">View a Round</button>
                     <div className="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                         <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">

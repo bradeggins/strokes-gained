@@ -8,20 +8,25 @@ import SelectRound from './SelectRound';
 import Displayround from './Displayround';
 import RenderLineChart from './RenderLineChart';
 import AnalyseShots from './AnalyseShots';
+import Contact from './Contact';
+import HowToUse from './HowToUse';
+
 
 
 function App (props) {
 
     return (
         <>
-            <h1>App</h1>
             <Route path='/' component={ Nav } />
             <Route path='/addround' component={ AddRound } />
             <Route path='/round/:round_id/entershot' component= { Entershot } />
             <Route path='/selectround' component= { SelectRound } />
             <Route exact path='/:round_id/displayround' component= { Displayround } />
-            <Route path="/chart" component={RenderLineChart} />
+            <Route path='/chart' component={RenderLineChart} />
             <Route exact path='/analyseshots' component={ AnalyseShots } />
+            <Route path='/contact' component={Contact} />
+            <Route path='/howtouse' component={HowToUse} />
+
         </>
     )
 }

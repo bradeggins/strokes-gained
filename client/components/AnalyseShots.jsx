@@ -6,7 +6,8 @@ import { postData } from '../api'
 class AnalyseShots extends React.Component {
 
     state = {
-        data: 0
+        data: 0,
+        items: []
     }
 
 
@@ -30,14 +31,14 @@ class AnalyseShots extends React.Component {
 
     setData = (data) => {
         this.setState({
-            data
+            items: [...this.state.items, data]
         })
     }
     
     render(){
         console.log(this.state);
         return(
-            <>
+            <div className="w-50 mx-auto d-flex flex-column">
                 <div className="form-group">
                     <label htmlFor="stat_type">Statistic Type</label>
                     <select onChange={this.handleChange} className="form-control" id="stat_type" name="stat_type">
@@ -88,8 +89,8 @@ class AnalyseShots extends React.Component {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>Look Up</button>
-                <h1>{this.state.data}, {this.state.stat_type}</h1>
-            </>
+                <h1>{this.state.items}, {this.state.stat_type}</h1>
+            </div>
         )
     }
 }
