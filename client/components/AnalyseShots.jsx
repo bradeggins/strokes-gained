@@ -6,7 +6,7 @@ import { postData } from '../api'
 class AnalyseShots extends React.Component {
 
     state = {
-        items: []
+        data: 0
     }
 
 
@@ -28,9 +28,9 @@ class AnalyseShots extends React.Component {
         postData('/analyseshots', 'POST', this.state, this.setData)              
     }
 
-    setData = () => {
+    setData = (data) => {
         this.setState({
-            items: data
+            data
         })
     }
     
@@ -52,7 +52,8 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sga_dist">Strokes Gained Approach</label>
                     <select onChange={this.handleChange} className="form-control" id="sga_dist" name="sga_dist" disabled>
-                        <option defaultValue="50">50-75</option>
+                        <option defaultValue="select">Select a Range</option>
+                        <option value="50">50-75</option>
                         <option value="75">75-100</option>
                         <option value="100">100-125</option>
                         <option value="125">125-150</option>
@@ -64,7 +65,8 @@ class AnalyseShots extends React.Component {
                 <div className="form-group">
                     <label htmlFor="sgp_dist">Strokes Gained Putting</label>
                     <select onChange={this.handleChange} className="form-control" id="sgp_dist" name="sgp_dist" disabled>
-                        <option defaultValue="0">0-1.5m (0-5ft)</option>
+                        <option defaultValue="select">Select Range</option>
+                        <option value="0">0-1.5m (0-5ft)</option>
                         <option value="1">1.5-3m (5-10ft)</option>
                         <option value="2">3-5m (10-15ft)</option>
                         <option value="3">5-7m (15-20ft)</option>
@@ -84,7 +86,7 @@ class AnalyseShots extends React.Component {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>Look Up</button>
-
+                <h1>{this.state.data}, {this.state.stat_type}</h1>
             </>
         )
     }

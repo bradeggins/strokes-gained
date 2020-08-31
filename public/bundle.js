@@ -306,7 +306,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      items: []
+      data: 0
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -324,9 +324,9 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
       Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/analyseshots', 'POST', _this.state, _this.setData);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "setData", function () {
+    _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
       _this.setState({
-        items: data
+        data: data
       });
     });
 
@@ -369,7 +369,9 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         name: "sga_dist",
         disabled: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        defaultValue: "50"
+        defaultValue: "select"
+      }, "Select a Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "50"
       }, "50-75"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "75"
       }, "75-100"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -393,7 +395,9 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         name: "sgp_dist",
         disabled: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        defaultValue: "0"
+        defaultValue: "select"
+      }, "Select Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "0"
       }, "0-1.5m (0-5ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "1"
       }, "1.5-3m (5-10ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -429,7 +433,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postForm
-      }, "Look Up"));
+      }, "Look Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.data, ", ", this.state.stat_type));
     }
   }]);
 
