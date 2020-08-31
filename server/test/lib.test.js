@@ -125,22 +125,6 @@ describe('Check correct funtion for filtering shot data', () => {
             });
     })
 
-    test('Strokes gained Tee to Green returns correct data', () => {
-        db.getRoundShots(shotObj, testDb)
-            .then((shots) => {
-                let actual = strokesGainedTeeToGreen(shots)
-                expect(actual.length).toBe(12)
-            }).catch((err) => {
-                expect(err).toBeNull()
-            });
-    })
-
-    test('Strokes gained Tee to Green excludes tee shot < 200m', () => {
-        let shots = [{shot_from: "T", dist_to_hole: 201}, {shot_from: "F", dist_to_hole: 150}]
-        let actual = strokesGainedTeeToGreen(shots)
-        expect(actual.length).toBe(1)
-    })
-
     test('Strokes gained around the green', () => {
         db.getRoundShots(shotObj, testDb)
             .then((shots) => {
@@ -161,9 +145,14 @@ describe('Check correct funtion for filtering shot data', () => {
             });
     })
 
-   
-   
-
-    
+    test('Strokes gained Tee to Green returns correct data', () => {
+        db.getRoundShots(shotObj, testDb)
+            .then((shots) => {
+                let actual = strokesGainedTeeToGreen(shots)
+                expect(actual.length).toBe(12)
+            }).catch((err) => {
+                expect(err).toBeNull()
+            });
+    })
 
 })

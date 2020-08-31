@@ -27,7 +27,7 @@ function strokesGainedOffTheTee(shots){
 }
 
 function strokesGainedTeeToGreen(shots){
-    return shots.filter(shot => (shot.shot_from == "T" && shot.dist_to_hole > 200) && shot.shot_from != "G")
+    return shots.filter(shot => shot.shot_from != "G" || shot.shot_from == "T" && shot.dist_to_hole > 200)
 }
 
 function strokesGainedAroundTheGreen(shots){
