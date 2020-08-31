@@ -73,7 +73,7 @@ exports.analyseShots = (req,res) => {
         .then((shots) => {
             addStrokesGained(shots)
             let sum = chooseFilter(shots, req.body).toFixed(2)
-            res.json({sg: sum})
+            res.json(sum)
         }).catch((err) => {
             sendServerErr(err, res)
         });

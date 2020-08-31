@@ -7,7 +7,8 @@ class AnalyseShots extends React.Component {
 
     state = {
         data: 0,
-        items: []
+        items: [],
+        type: []
     }
 
 
@@ -30,8 +31,10 @@ class AnalyseShots extends React.Component {
     }
 
     setData = (data) => {
+        
         this.setState({
-            items: [...this.state.items, data]
+            items: [...this.state.items, data],
+            type: [...this.state.type, this.state.stat_type]
         })
     }
     

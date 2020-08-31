@@ -319,7 +319,8 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       data: 0,
-      items: []
+      items: [],
+      type: []
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -339,7 +340,8 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
       _this.setState({
-        items: [].concat(_toConsumableArray(_this.state.items), [data])
+        items: [].concat(_toConsumableArray(_this.state.items), [data]),
+        type: [].concat(_toConsumableArray(_this.state.type), [_this.state.stat_type])
       });
     });
 
