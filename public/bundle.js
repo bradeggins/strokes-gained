@@ -400,15 +400,15 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         value: "0"
       }, "0-1.5m (0-5ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "1"
-      }, "1.5-3m (5-10ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "1.8-3m (6-10ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "2"
-      }, "3-5m (10-15ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "3.3-4.5m (11-15ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "3"
-      }, "5-7m (15-20ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "4.8-6m (16-20ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "4"
-      }, "7-10m (20-30ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "6.5-9m (21-30ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "5"
-      }, "10m-15m (30-50ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "9.5-15m (31-50ft)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "6"
       }, "15m + (50ft +)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"

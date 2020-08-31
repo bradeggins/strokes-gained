@@ -16,7 +16,7 @@ function addStrokesGained(shots){
 }
 
 function strokesGainedPutting(shots, sgp_dist){
-    let distances = [[0,1.5], [1.5,3], [3,5], [5,7], [7,10], [10,15], [15,27]]
+    let distances = [[0,1.5], [1.6,3], [3.1,4.5], [4.6, 6], [6.1, 9], [9.1,15], [15.1,27]]
     return shots.filter(shot => shot.shot_from == "G" 
     && shot.dist_to_hole >= distances[parseFloat(sgp_dist)][0] 
     && shot.dist_to_hole <= distances[parseFloat(sgp_dist)][1])

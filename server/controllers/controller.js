@@ -6,7 +6,6 @@ const{ isValidTypeDist } = require('../lib/validate.js')
 exports.selectRoundData = (req,res) => {
     return db.viewRounds()
         .then((data) => {
-            console.log(data)
             res.json({rounds: data})
         }).catch((err) => {
             sendServerErr(err, res)

@@ -67,11 +67,11 @@ class AnalyseShots extends React.Component {
                     <select onChange={this.handleChange} className="form-control" id="sgp_dist" name="sgp_dist" disabled>
                         <option defaultValue="select">Select Range</option>
                         <option value="0">0-1.5m (0-5ft)</option>
-                        <option value="1">1.5-3m (5-10ft)</option>
-                        <option value="2">3-5m (10-15ft)</option>
-                        <option value="3">5-7m (15-20ft)</option>
-                        <option value="4">7-10m (20-30ft)</option>
-                        <option value="5">10m-15m (30-50ft)</option>
+                        <option value="1">1.8-3m (6-10ft)</option>
+                        <option value="2">3.3-4.5m (11-15ft)</option>
+                        <option value="3">4.8-6m (16-20ft)</option>
+                        <option value="4">6.5-9m (21-30ft)</option>
+                        <option value="5">9.5-15m (31-50ft)</option>
                         <option value="6">15m + (50ft +)</option>
                     </select>
                 </div>
