@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { postData } from '../api'
+import AnalyseChart from './AnalyseChart';
 
 class AnalyseShots extends React.Component {
 
     state = {
-        data: 0,
-        items: [],
-        type: []
+        sg: 0,
+        type: ""
     }
 
 
@@ -31,10 +31,9 @@ class AnalyseShots extends React.Component {
     }
 
     setData = (data) => {
-        
         this.setState({
-            items: [...this.state.items, data],
-            type: [...this.state.type, this.state.stat_type]
+            sg: data,
+            type: this.state.stat_type
         })
     }
     
@@ -92,7 +91,7 @@ class AnalyseShots extends React.Component {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>Look Up</button>
-                <h1>{this.state.items}, {this.state.stat_type}</h1>
+                <AnalyseChart sg={this.state.sg} type={this.state.type}/>
             </div>
         )
     }
