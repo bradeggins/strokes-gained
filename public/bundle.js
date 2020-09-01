@@ -210,7 +210,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
           data: this.state
         }
       });else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group w-50 mx-auto"
+        className: "form-group w-50 mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Add a New Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "course",
         className: "col-form-label"
@@ -282,72 +282,28 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-var data = [{
-  name: 'Page A',
-  uv: 4000,
-  pv: 2400,
-  amt: 2400
-}, {
-  name: 'Page B',
-  uv: 3000,
-  pv: 1398,
-  amt: 2210
-}, {
-  name: 'Page C',
-  uv: 2000,
-  pv: 9800,
-  amt: 2290
-}, {
-  name: 'Page D',
-  uv: 2780,
-  pv: 3908,
-  amt: 2000
-}, {
-  name: 'Page E',
-  uv: 1890,
-  pv: 4800,
-  amt: 2181
-}, {
-  name: 'Page F',
-  uv: 2390,
-  pv: 3800,
-  amt: 2500
-}, {
-  name: 'Page G',
-  uv: 3490,
-  pv: 4300,
-  amt: 2100
-}];
 
 var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
   _inherits(AnalyseChart, _PureComponent);
 
   var _super = _createSuper(AnalyseChart);
 
-  function AnalyseChart() {
+  function AnalyseChart(props) {
     _classCallCheck(this, AnalyseChart);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(AnalyseChart, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState(this.props.items);
-    }
-  }, {
     key: "render",
     value: function render() {
       console.log(this.props.items);
-      console.log(this.state);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
-        width: 500,
-        height: 300,
-        data: this.state,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["BarChart"], {
+        width: 800,
+        height: 500,
+        data: this.props.items,
         margin: {
           top: 5,
           right: 30,
@@ -356,27 +312,39 @@ var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], {
-        dataKey: "name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
-        type: "monotone",
-        dataKey: "pv",
-        stroke: "#8884d8",
-        activeDot: {
-          r: 8
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
-        type: "monotone",
-        dataKey: "uv",
-        stroke: "#82ca9d"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ReferenceLine"], {
+        y: 0,
+        stroke: "#000"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sgt",
+        barSize: 50,
+        fill: "#008CBA"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sgott",
+        barSize: 50,
+        fill: "#00729F"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sga",
+        barSize: 50,
+        fill: "#002C53"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sgt2g",
+        barSize: 50,
+        fill: "#00193B"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sgp",
+        barSize: 50,
+        fill: "#000225"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
+        dataKey: "sgatg",
+        barSize: 50,
+        fill: "#00010E"
       }));
     }
   }]);
 
   return AnalyseChart;
 }(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
-
-_defineProperty(AnalyseChart, "jsfiddleUrl", 'https://jsfiddle.net/alidingling/xqjtetw0/');
 
 
 
@@ -393,10 +361,9 @@ _defineProperty(AnalyseChart, "jsfiddleUrl", 'https://jsfiddle.net/alidingling/x
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/index.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./client/api.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api */ "./client/api.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AnalyseChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnalyseChart */ "./client/components/AnalyseChart.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -437,7 +404,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var AnalyseShots = /*#__PURE__*/function (_React$Component) {
   _inherits(AnalyseShots, _React$Component);
 
@@ -470,7 +436,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
-      Object(_api__WEBPACK_IMPORTED_MODULE_3__["postData"])('/analyseshots', 'POST', _this.state, _this.setData);
+      Object(_api__WEBPACK_IMPORTED_MODULE_1__["postData"])('/analyseshots', 'POST', _this.state, _this.setData);
     });
 
     _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
@@ -493,8 +459,14 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.items);
       console.log(this.state);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "w-50 mx-auto d-flex flex-column"
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "align-center mt-5 w-75 mx-auto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Performance Analysis"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Analyse different areas of your game")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container d-flex flex-row mt-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "w-75 mx-auto d-flex flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -595,35 +567,10 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postForm
-      }, "Look Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chart"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["LineChart"], {
-        width: 500,
-        height: 300,
-        data: this.items,
-        margin: {
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["CartesianGrid"], {
-        strokeDasharray: "3 3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["XAxis"], {
-        dataKey: "type"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["YAxis"], {
-        dataKey: "sg"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Line"], {
-        type: "monotone",
-        dataKey: "sg",
-        stroke: "#8884d8",
-        activeDot: {
-          r: 8
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Line"], {
-        type: "monotone",
-        dataKey: "uv",
-        stroke: "#82ca9d"
+      }, "Look Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "analyse-chart"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AnalyseChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        items: this.items
       }))));
     }
   }]);
