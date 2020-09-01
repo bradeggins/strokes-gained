@@ -10,6 +10,7 @@ import RenderLineChart from './RenderLineChart';
 import AnalyseShots from './AnalyseShots';
 import Contact from './Contact';
 import HowToUse from './HowToUse';
+import AnalyseChart from './AnalyseChart'
 
 
 
@@ -26,6 +27,8 @@ function App (props) {
             <Route exact path='/analyseshots' component={ AnalyseShots } />
             <Route path='/contact' component={Contact} />
             <Route path='/howtouse' component={HowToUse} />
+            <Route path='/analysechart' component={AnalyseChart} />
+
 
         </>
     )

@@ -285,61 +285,71 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- // const data = [
-//   {
-//     name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-//   },
-//   {
-//     name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-//   },
-//   {
-//     name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-//   },
-//   {
-//     name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-//   },
-//   {
-//     name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-//   },
-//   {
-//     name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-//   },
-//   {
-//     name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-//   },
-// ];
+
+var data = [{
+  name: 'Page A',
+  uv: 4000,
+  pv: 2400,
+  amt: 2400
+}, {
+  name: 'Page B',
+  uv: 3000,
+  pv: 1398,
+  amt: 2210
+}, {
+  name: 'Page C',
+  uv: 2000,
+  pv: 9800,
+  amt: 2290
+}, {
+  name: 'Page D',
+  uv: 2780,
+  pv: 3908,
+  amt: 2000
+}, {
+  name: 'Page E',
+  uv: 1890,
+  pv: 4800,
+  amt: 2181
+}, {
+  name: 'Page F',
+  uv: 2390,
+  pv: 3800,
+  amt: 2500
+}, {
+  name: 'Page G',
+  uv: 3490,
+  pv: 4300,
+  amt: 2100
+}];
 
 var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
   _inherits(AnalyseChart, _PureComponent);
 
   var _super = _createSuper(AnalyseChart);
 
-  function AnalyseChart(props) {
-    var _this;
-
+  function AnalyseChart() {
     _classCallCheck(this, AnalyseChart);
 
-    _this = _super.call(this, props);
-
-    _defineProperty(_assertThisInitialized(_this), "data", []);
-
-    return _this;
-  } // componentDidMount(){
-  //   this.data.push(this.props)
-  // }
-
+    return _super.apply(this, arguments);
+  }
 
   _createClass(AnalyseChart, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState(this.props.items);
+    }
+  }, {
     key: "render",
     value: function render() {
-      this.data.push(this.props);
-      console.log(this.data);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["BarChart"], {
+      console.log(this.props.items);
+      console.log(this.state);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
         width: 500,
         height: 300,
-        data: this.data,
+        data: this.state,
         margin: {
-          top: 20,
+          top: 5,
           right: 30,
           left: 20,
           bottom: 5
@@ -347,19 +357,26 @@ var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], {
-        dataKey: "type"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
-        dataKey: "sg"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
-        dataKey: "sg",
-        stackId: "a",
-        fill: "#8884d8"
+        dataKey: "name"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+        type: "monotone",
+        dataKey: "pv",
+        stroke: "#8884d8",
+        activeDot: {
+          r: 8
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+        type: "monotone",
+        dataKey: "uv",
+        stroke: "#82ca9d"
       }));
     }
   }]);
 
   return AnalyseChart;
 }(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
+
+_defineProperty(AnalyseChart, "jsfiddleUrl", 'https://jsfiddle.net/alidingling/xqjtetw0/');
 
 
 
@@ -377,10 +394,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./client/api.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _AnalyseChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AnalyseChart */ "./client/components/AnalyseChart.jsx");
+/* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./client/api.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -426,8 +455,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      sg: 0,
-      type: ""
+      received: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -442,15 +470,20 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
-      Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/analyseshots', 'POST', _this.state, _this.setData);
+      Object(_api__WEBPACK_IMPORTED_MODULE_3__["postData"])('/analyseshots', 'POST', _this.state, _this.setData);
     });
 
     _defineProperty(_assertThisInitialized(_this), "setData", function (data) {
+      var _ref;
+
+      _this.items = [].concat(_toConsumableArray(_this.items), [(_ref = {}, _defineProperty(_ref, _this.state.stat_type, Number(data)), _defineProperty(_ref, "rounds", _this.state.round_group), _ref)]);
+
       _this.setState({
-        sg: data,
-        type: _this.state.stat_type
+        received: true
       });
     });
+
+    _defineProperty(_assertThisInitialized(_this), "items", []);
 
     return _this;
   }
@@ -458,6 +491,7 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
   _createClass(AnalyseShots, [{
     key: "render",
     value: function render() {
+      console.log(this.items);
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "w-50 mx-auto d-flex flex-column"
@@ -561,10 +595,36 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         className: "btn btn-primary btn-lg",
         onClick: this.postForm
-      }, "Look Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AnalyseChart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        sg: this.state.sg,
-        type: this.state.type
-      }));
+      }, "Look Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chart"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["LineChart"], {
+        width: 500,
+        height: 300,
+        data: this.items,
+        margin: {
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["CartesianGrid"], {
+        strokeDasharray: "3 3"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["XAxis"], {
+        dataKey: "type"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["YAxis"], {
+        dataKey: "sg"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Line"], {
+        type: "monotone",
+        dataKey: "sg",
+        stroke: "#8884d8",
+        activeDot: {
+          r: 8
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__["Line"], {
+        type: "monotone",
+        dataKey: "uv",
+        stroke: "#82ca9d"
+      }))));
     }
   }]);
 
@@ -596,6 +656,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AnalyseShots__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AnalyseShots */ "./client/components/AnalyseShots.jsx");
 /* harmony import */ var _Contact__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Contact */ "./client/components/Contact.jsx");
 /* harmony import */ var _HowToUse__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./HowToUse */ "./client/components/HowToUse.jsx");
+/* harmony import */ var _AnalyseChart__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./AnalyseChart */ "./client/components/AnalyseChart.jsx");
+
 
 
 
@@ -638,6 +700,9 @@ function App(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/howtouse",
     component: _HowToUse__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/analysechart",
+    component: _AnalyseChart__WEBPACK_IMPORTED_MODULE_11__["default"]
   }));
 }
 

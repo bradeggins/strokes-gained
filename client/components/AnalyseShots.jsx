@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+
 import { Link } from 'react-router-dom';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
 import { postData } from '../api'
-import AnalyseChart from './AnalyseChart';
+
 
 class AnalyseShots extends React.Component {
 
     state = {
-        sg: 0,
-        type: ""
+        received: false
     }
 
 
@@ -30,14 +33,17 @@ class AnalyseShots extends React.Component {
         postData('/analyseshots', 'POST', this.state, this.setData)              
     }
 
+
+
     setData = (data) => {
-        this.setState({
-            sg: data,
-            type: this.state.stat_type
-        })
+        this.items = [...this.items, {[this.state.stat_type]: Number(data), rounds: this.state.round_group}]
+        this.setState({received: true})
     }
+
+   items = []
     
     render(){
+        console.log(this.items);
         console.log(this.state);
         return(
             <div className="w-50 mx-auto d-flex flex-column">
@@ -91,7 +97,24 @@ class AnalyseShots extends React.Component {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>Look Up</button>
-                <AnalyseChart sg={this.state.sg} type={this.state.type}/>
+                <div className="chart">
+                    <LineChart
+                        width={500}
+                        height={300}
+                        data={this.items}
+                        margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="type" />
+                        <YAxis dataKey="sg"/>
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="sg" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    </LineChart>
+                </div>
             </div>
         )
     }
