@@ -15,14 +15,90 @@ function addStrokesGained(shots){
 
 }
 
- function validateBool(holed){
-    return holed == "true" ? holed = 1: holed = ""
+function strokesGainedPutting(shots, sgp_dist){
+    let distances = [[0,1.5], [1.6,3], [3.1,4.5], [4.6, 6], [6.1, 9], [9.1,15], [15.1,27]]
+    return shots.filter(shot => shot.shot_from == "G" 
+    && shot.dist_to_hole >= distances[parseFloat(sgp_dist)][0] 
+    && shot.dist_to_hole <= distances[parseFloat(sgp_dist)][1])
 }
 
+function strokesGainedOffTheTee(shots){
+    return shots.filter(shot => shot.shot_from == "T" && shot.dist_to_hole > 200)
+}
+
+function strokesGainedTeeToGreen(shots){
+    return shots.filter(shot => shot.shot_from != "G" || shot.shot_from == "T" && shot.dist_to_hole > 200)
+}
+
+function strokesGainedAroundTheGreen(shots){
+    return shots.filter(shot => shot.shot_from != "G" && shot.dist_to_hole < 30)
+}
+
+function sumSG(shots){
+    return shots.reduce((acc, value) => {
+        return acc += value.sg
+    }, 0)
+}
+
+function strokesGainedApproach(shots, sga_dist){
+    let endRange = parseInt(sga_dist) + 25
+    return shots.filter(shot => shot.dist_to_hole > sga_dist 
+        && shot.dist_to_hole < endRange 
+        && shot.shot_from != "G"
+        || (shot.shot_from == "T" && shot.dist_to_hole < 200
+        && shot.dist_to_hole > sga_dist
+        && shot.dist_to_hole < endRange))
+}
+
+
+
+function chooseFilter(shots, obj){
+    const {stat_type, round_group, sga_dist, sgp_dist} = obj
+    let shotHistory = roundHistory(shots, round_group)
+    switch (stat_type) {
+        case "sgp": 
+            let sgp = strokesGainedPutting(shotHistory, sgp_dist)
+            return sumSG(sgp);
+        case "sgt2g":
+            let sgt2g = strokesGainedTeeToGreen(shotHistory)
+            return sumSG(sgt2g);
+        case "sgott":
+            let sgt = strokesGainedOffTheTee(shotHistory)
+            return sumSG(sgt);
+        case "sgatg":
+            let sgatg = strokesGainedAroundTheGreen(shotHistory)
+            return sumSG(sgatg)
+        case "sga":
+            let sga = strokesGainedApproach(shotHistory, sga_dist)
+            return sumSG(sga)
+        default: return sumSG(shotHistory)
+    }
+}
+
+function roundHistory(shots, history){
+    if(history == "all") {
+        return shots  
+    } else {
+        let lastRound = shots[shots.length - 1].round_id;
+        return shots.filter(shot => shot.round_id > lastRound - Number(history))
+    }       
+}
+
+
+function validateBool(holed){
+    return holed == "true" ? holed = 1: holed = ""
+}
 
 
  module.exports = {
      calcStrokesGained,
      validateBool,
-     addStrokesGained
+     addStrokesGained,
+     chooseFilter,
+     strokesGainedPutting,
+     strokesGainedOffTheTee,
+     strokesGainedTeeToGreen,
+     strokesGainedAroundTheGreen,
+     sumSG,
+     strokesGainedApproach
  }

@@ -1,5 +1,7 @@
 const express = require('express')
 const router = require('./server/router')
+const sendMail = require('./server/sendMail')
+require('dotenv').config();
 
 const server = express()
 
@@ -8,6 +10,7 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
 server.use('/', router)
+server.use('/sendmail', sendMail)
 
 const port = process.env.PORT || 5000
 
