@@ -11,6 +11,7 @@ import AnalyseShots from './AnalyseShots';
 import Contact from './Contact';
 import HowToUse from './HowToUse';
 import AnalyseChart from './AnalyseChart'
+import Landing from './Landing';
 
 
 
@@ -19,6 +20,7 @@ function App (props) {
     return (
         <>
             <Route path='/' component={ Nav } />
+            <Route exact path='/' component={ Landing } />
             <Route path='/addround' component={ AddRound } />
             <Route path='/round/:round_id/entershot' component= { Entershot } />
             <Route path='/selectround' component= { SelectRound } />

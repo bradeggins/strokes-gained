@@ -29,12 +29,12 @@ class Displayround extends React.Component{
     render(){
         return(
             <>
-            <div className="w-50 mx-auto">
+            <div className="w-50 mx-auto mt-5">
                 <div className="round-table">
                     <h1>Round Entries</h1>
                     <table className="table table-hover">
                         <tbody>
-                            <tr>
+                            <tr className="table-primary">
                                 <th scope="row">Hole Number</th>
                                 <td>Distance to Hole</td>
                                 <td>Shot From(Lie)</td>
@@ -42,7 +42,7 @@ class Displayround extends React.Component{
                                 <td>Strokes Gained</td>
                             </tr>
                                 {this.state.items.map(item => 
-                                    <tr className="table-primary" key={item.id}>
+                                    <tr className="table-secondary" key={item.id}>
                                         <th scope="row">{item.hole_number}</th>
                                         <td>{item.dist_to_hole}</td>
                                         <td>{item.shot_from}</td>
