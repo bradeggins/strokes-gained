@@ -12,7 +12,6 @@ class Contact extends React.Component{
         email: "",
         subject: "",
         message: "",
-        status: ""
     }
 
     handleChange = (event) => {

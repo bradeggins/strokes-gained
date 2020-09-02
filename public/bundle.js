@@ -721,8 +721,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       name: "",
       email: "",
       subject: "",
-      message: "",
-      status: ""
+      message: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -976,16 +975,26 @@ var EmailSent = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       console.log(this.props);
-      if (this.props.status == "") return null;else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      if (!this.props.status) return null;
+      if (this.props.status == 'fail') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "alert alert-dismissible alert-danger"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        "class": "close",
+        "data-dismiss": "alert"
+      }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Oh snap!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "mailto:strokesgainedstats@gmail.com",
+        "class": "alert-link"
+      }, " Something went wrong, email us at strokesgainedstats@gmail.com"));else if (this.props.status == 'success') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "alert alert-dismissible alert-success"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "close",
         "data-dismiss": "alert"
-      }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Nice work!"), "Your email has been successfully sent!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Nice work!"), " Your email has been successfully sent!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#",
         className: "alert-link"
-      }, "this important alert message"), ".");
+      }));
     }
   }]);
 
