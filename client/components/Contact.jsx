@@ -1,4 +1,5 @@
 import React from 'react';
+import EmailSent from './EmailSent'
 import { postData } from '../api'
 
 class Contact extends React.Component{
@@ -10,7 +11,8 @@ class Contact extends React.Component{
         name: "",
         email: "",
         subject: "",
-        message: ""
+        message: "",
+        status: ""
     }
 
     handleChange = (event) => {
@@ -25,15 +27,14 @@ class Contact extends React.Component{
     }
 
     formSentOk = (data) => {
-        // data.sent == true ? :
-        console.log(data);
+        this.setState({status: data.status})
     }
 
 render(){
     console.log(this.state);
     return(
-            
         <div className="container d-flex w-75 flex-column mt-5">
+            <EmailSent status={this.state.status} />
             <h1>Contact Us!</h1>
             <div className="form-group">
                 <label className="col-form-label" htmlFor="name">Name</label>
