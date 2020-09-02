@@ -2,7 +2,6 @@ const db = require('../db/db')
 const { addStrokesGained, chooseFilter } = require('../lib/lib')
 const{ isValidTypeDist } = require('../lib/validate.js')
 
-
 exports.selectRoundData = (req,res) => {
     return db.viewRounds()
         .then((data) => {

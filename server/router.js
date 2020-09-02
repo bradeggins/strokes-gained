@@ -2,6 +2,7 @@ const express = require('express')
 const db = require('./db/db')
 const controller = require('./controllers/controller')
 
+
 const router = express.Router()
 
 router.route('/selectround')
@@ -24,6 +25,5 @@ router.route('/round/deleteshot')
 
 router.route('/analyseshots')
     .post(controller.analyseShots)
-
 
 module.exports = router
