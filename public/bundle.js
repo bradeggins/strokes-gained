@@ -177,8 +177,8 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      round_date: "Date",
-      course: "ANGC",
+      round_date: "",
+      course: "",
       added: false
     });
 
@@ -186,6 +186,10 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       var value = event.target.value;
 
       _this.setState(_defineProperty({}, event.target.name, value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "formEnable", function () {
+      return _this.state.round_date == "" || _this.state.course == "" ? true : false;
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
@@ -235,6 +239,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
+        disabled: this.formEnable(),
         onClick: this.postForm
       }, "Add a round")));
     }
