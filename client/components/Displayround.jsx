@@ -31,7 +31,7 @@ class Displayround extends React.Component{
             <>
             <div className="responsive-container mx-auto mt-5">
                 <div className="round-table">
-                    <h1>Round Entries</h1>
+                    <h1>Shots</h1>
                     <table className="table table-hover">
                         <tbody>
                             <tr className="table-primary">

@@ -942,7 +942,7 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
         className: "responsive-container mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "round-table"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Round Entries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Shots"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
         className: "table-primary"
@@ -1165,60 +1165,62 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group responsive-container mx-auto d-flex flex-column"
+        className: "form-group responsive-container mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WarningBanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
         warn: this.state.showWarning,
         err: this.state.err,
         onClick: this.resetWarning
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Enter your round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "shot_from",
         className: "col-form-label-lg"
-      }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.postForm
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "btn-group",
         role: "group",
-        "aria-label": "Basic example"
+        "aria-label": "button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "T"
       }, "Tee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "F"
       }, "Fairway"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "G"
       }, "Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "R"
       }, "Rough"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "S"
       }, "Sand"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "RC"
       }, "Recovery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "P"
       }, "Penalty")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1243,13 +1245,13 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
         value: "true",
         onChange: this.handleChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "custom-control-label",
+        className: "custom-control-label form-control-lg",
         htmlFor: "holed"
       }, "Holed?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
         disabled: this.formEnable()
-      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
         round_id: this.props.match.params.round_id
       }));
     }
@@ -1312,7 +1314,7 @@ var HowToUse = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group responsive-container mx-auto d-flex flex-column"
+        className: "form-group responsive-container mx-auto d-flex flex-column mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "How to Use Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Strokes gained is benchamrk in golf statistics. There is a direct correlation between strokes gained statistics and the world top golf rankings.")));
     }
   }]);
