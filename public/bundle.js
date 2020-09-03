@@ -721,7 +721,8 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       name: "",
       email: "",
       subject: "",
-      message: ""
+      message: "",
+      humanCheck: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -730,8 +731,16 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "formEnabled", function () {
+      return _this.isHumanInput(_this.state.humanCheck) && _this.emailIsValid(_this.state.email);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "emailIsValid", function (email) {
       return /\S+@\S+\.\S+/.test(email);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "isHumanInput", function (number) {
+      return Number(number) == 7 ? true : false;
     });
 
     _defineProperty(_assertThisInitialized(_this), "sendForm", function () {
@@ -768,6 +777,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
         id: "name",
         onChange: this.handleChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
         htmlFor: "email"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "email",
@@ -795,6 +805,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
         htmlFor: "message"
       }, "Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "form-control",
@@ -802,10 +813,22 @@ var Contact = /*#__PURE__*/function (_React$Component) {
         name: "message",
         rows: "5",
         onChange: this.handleChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
+        htmlFor: "humanCheck"
+      }, "Are you a human? 5 + 2 = ?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        placeholder: "Answer",
+        name: "humanCheck",
+        id: "humanCheck",
+        onChange: this.handleChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary",
-        disabled: !this.emailIsValid(this.state.email),
+        disabled: !this.formEnabled(),
         onClick: this.sendForm
       }, "Submit"));
     }
@@ -979,7 +1002,6 @@ var EmailSent = /*#__PURE__*/function (_React$Component) {
   _createClass(EmailSent, [{
     key: "render",
     value: function render() {
-      console.log(this.props);
       if (!this.props.status) return null;
       if (this.props.status == 'fail') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "alert alert-dismissible alert-danger"
