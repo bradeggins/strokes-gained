@@ -21,8 +21,12 @@ class Contact extends React.Component{
         })
     }
 
+    emailIsValid = (email) => {
+        return /\S+@\S+\.\S+/.test(email)
+      }
+
     sendForm = () => {
-        postData('/sendmail', 'POST', this.state, this.formSentOk)
+            postData('/sendmail', 'POST', this.state, this.formSentOk)
     }
 
     formSentOk = (data) => {
@@ -52,7 +56,7 @@ render(){
                     <label htmlFor="message">Message</label>
                     <textarea className="form-control" id="message" name="message" rows="5" onChange={this.handleChange}></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={this.sendForm}>Submit</button>
+                <button type="submit" className="btn btn-primary" disabled={!this.emailIsValid(this.state.email)} onClick={this.sendForm}>Submit</button>
         </div>
         )
     }

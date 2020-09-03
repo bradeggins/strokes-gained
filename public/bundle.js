@@ -730,6 +730,10 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "emailIsValid", function (email) {
+      return /\S+@\S+\.\S+/.test(email);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "sendForm", function () {
       Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/sendmail', 'POST', _this.state, _this.formSentOk);
     });
@@ -801,6 +805,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary",
+        disabled: !this.emailIsValid(this.state.email),
         onClick: this.sendForm
       }, "Submit"));
     }
