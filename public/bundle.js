@@ -1117,7 +1117,8 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, value), _defineProperty(_this$setState, "round_id", round_id), _this$setState));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "postForm", function () {
+    _defineProperty(_assertThisInitialized(_this), "postForm", function (event) {
+      event.preventDefault();
       Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/round/entershot', 'POST', _this.state, _this.setData);
     });
 
@@ -1164,7 +1165,9 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "shot_from",
         className: "col-form-label-lg"
-      }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.postForm
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "btn-group",
         role: "group",
         "aria-label": "Basic example"
@@ -1237,9 +1240,8 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }, "Holed?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
-        disabled: this.formEnable(),
-        onClick: this.postForm
-      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        disabled: this.formEnable()
+      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
         round_id: this.props.match.params.round_id
       }));
     }
@@ -1514,23 +1516,36 @@ var RenderLineChart = /*#__PURE__*/function (_PureComponent) {
     value: function render() {
       console.log(this.props.round.items);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ResponsiveContainer"], {
-        width: 700,
+        width: "100%",
         height: "80%"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
         data: this.props.round.items,
         margin: {
-          top: 5,
+          top: 30,
           right: 30,
-          left: 20,
-          bottom: 5
+          left: 30,
+          bottom: 30
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], {
         dataKey: "hole_number"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        value: "Hole",
+        position: "bottom",
+        style: {
+          textAnchor: "middle"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
         dataKey: "sg"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        value: "Strokes Gained",
+        position: "left",
+        angle: -90,
+        style: {
+          textAnchor: "middle"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
         type: "monotone",
         dataKey: "sg",
         stroke: "#008cba",

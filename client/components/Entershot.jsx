@@ -30,7 +30,8 @@ class Entershot extends React.Component {
         })
     }
 
-    postForm = () => {
+    postForm = (event) => {
+        event.preventDefault()
         postData('/round/entershot', 'POST', this.state, this.setData)              
     }
 
@@ -42,7 +43,7 @@ class Entershot extends React.Component {
     }
 
 
-    resetForm= () => {
+    resetForm = () => {
         this.setState({
             shot_from: "",
             dist_to_hole: "",
@@ -62,8 +63,8 @@ class Entershot extends React.Component {
                 <div className="form-group w-50 mx-auto d-flex flex-column">
                 <WarningBanner warn={this.state.showWarning} err={this.state.err} onClick={this.resetWarning} />
        
-                    
-                    <label htmlFor="shot_from" className="col-form-label-lg">Shot From</label>
+                        <label htmlFor="shot_from" className="col-form-label-lg">Shot From</label>
+                    <form onSubmit={this.postForm}>
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <button name="shot_from" type="button" className="btn btn-primary" onClick={this.handleChange} value="T">Tee</button>
                         <button name="shot_from" type="button" className="btn btn-primary" onClick={this.handleChange} value="F">Fairway</button>
@@ -84,8 +85,9 @@ class Entershot extends React.Component {
                         <input className="custom-control-input" type="checkbox" name="holed" id="holed" value="true" onChange={this.handleChange}/>
                         <label className="custom-control-label" htmlFor="holed">Holed?</label>
                     </div>
-
-                    <button type="submit" className="btn btn-primary btn-lg" disabled={this.formEnable()} onClick={this.postForm}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
+                    
+                        <button type="submit" className="btn btn-primary btn-lg" disabled={this.formEnable()}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
+                    </form>
                 </div>
                 <Displayround round_id={this.props.match.params.round_id}/>
             
