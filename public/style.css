@@ -1,4 +1,23 @@
+@media screen and (min-width: 320px) and (max-width: 768px) and (orientation: portrait) {
+    .responsive-container{
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) and (orientation: portrait) {
+    .responsive-container{
+        width: 75vw;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    .responsive-container{
+        width: 60vw;
+    }
+}
+
 .jumbotron {
+    height: 80vh;
     background: url('jumbotron-greyscale.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -6,3 +25,4 @@
     -o-background-size: cover;
     color: white;
  }
+

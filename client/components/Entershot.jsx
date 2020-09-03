@@ -60,7 +60,7 @@ class Entershot extends React.Component {
         console.log(this.state)
         return (
             <>
-                <div className="form-group w-50 mx-auto d-flex flex-column">
+                <div className="form-group responsive-container mx-auto d-flex flex-column">
                 <WarningBanner warn={this.state.showWarning} err={this.state.err} onClick={this.resetWarning} />
        
                         <label htmlFor="shot_from" className="col-form-label-lg">Shot From</label>

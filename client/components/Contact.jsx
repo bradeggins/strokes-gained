@@ -47,7 +47,7 @@ class Contact extends React.Component{
 render(){
     console.log(this.state);
     return(
-        <div className="container d-flex w-75 flex-column mt-5">
+        <div className="container d-flex responsive-container flex-column mt-5">
             <EmailSent status={this.state.status} />
             <h1 role="heading">Contact Us!</h1>
             <div className="form-group">

@@ -21,15 +21,17 @@ class SelectRound extends React.Component {
     render(){
         return(
             <>
-                <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" className="btn btn-primary">View a Round</button>
-                    <div className="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                        <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            {this.state.rounds.map(item => <Link to={`/${item.id}/displayround`} key={item.id} className="dropdown-item">{item.course}, {item.round_date} </Link>)}
+            <div className="d-flex flex-column responsive-container mx-auto mt-5">
+                <h1>Select an entry to view the round</h1>
+                    {this.state.rounds.map(item => 
+                    <div className="card border-primary mb-3" key={item.id}>
+                        <div className="card-header"><Link to={`/${item.id}/displayround`}>{item.course}</Link></div>
+                        <div className="card-body">
+                            <h4 className="card-title"><Link to={`/${item.id}/displayround`}>{item.round_date}</Link></h4>
                         </div>
                     </div>
-                </div>
+                    )}
+            </div>
            
             </>
         )

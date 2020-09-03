@@ -39,7 +39,7 @@ class AddRound extends React.Component {
         else
             return (
                 <>
-                    <div className="form-group w-50 mx-auto mt-5">
+                    <div className="form-group responsive-container mx-auto mt-5">
                         <h1>Add a New Round</h1>
                         <label htmlFor="course" className="col-form-label">Course</label>
                         <input type="text" name="course" id="course" className="form-control" placeholder="Course" value={this.state.course} onChange={this.handleChange} />

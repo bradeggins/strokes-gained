@@ -43,14 +43,14 @@ class AnalyseShots extends React.Component {
         console.log(this.state);
         return(
             <>
-            <div className="align-center mt-5 w-75 mx-auto">
+            <div className="align-center mt-5 responsive-container mx-auto">
                 <h1>Performance Analysis</h1>
                 <h2>Analyse different areas of your game</h2>
             </div>
             
-            <div className="container d-flex flex-row mt-5">
+            <div className="container d-flex flex-column mt-5">
                 <div className="form-group">
-                    <div className="w-75 mx-auto d-flex flex-column">
+                    <div className="responsive-container mx-auto d-flex flex-column">
                         <div className="form-group">
                             <label htmlFor="stat_type">Statistic Type</label>
                             <select onChange={this.handleChange} className="form-control" id="stat_type" name="stat_type">
