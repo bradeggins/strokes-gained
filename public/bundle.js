@@ -1104,6 +1104,10 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       err: ""
     });
 
+    _defineProperty(_assertThisInitialized(_this), "formEnable", function () {
+      return _this.state.shot_from == "" || _this.state.dist_to_hole == "" ? true : false;
+    });
+
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       var _this$setState;
 
@@ -1233,6 +1237,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }, "Holed?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
+        disabled: this.formEnable(),
         onClick: this.postForm
       }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
         round_id: this.props.match.params.round_id

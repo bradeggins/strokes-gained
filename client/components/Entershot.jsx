@@ -17,6 +17,10 @@ class Entershot extends React.Component {
         err: ""
     }
 
+    formEnable = () => {
+        return this.state.shot_from == "" || this.state.dist_to_hole == "" ? true : false
+    }
+
     handleChange = (event) => {
         const value  = event.target.value
         const {round_id} = this.props.match.params
@@ -81,7 +85,7 @@ class Entershot extends React.Component {
                         <label className="custom-control-label" htmlFor="holed">Holed?</label>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-lg"onClick={this.postForm}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
+                    <button type="submit" className="btn btn-primary btn-lg" disabled={this.formEnable()} onClick={this.postForm}>{`Add shot ${this.state.dist_to_hole} ${this.state.shot_from}`}</button>
                 </div>
                 <Displayround round_id={this.props.match.params.round_id}/>
             
