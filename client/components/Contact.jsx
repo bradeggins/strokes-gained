@@ -52,7 +52,7 @@ render(){
             <h1 role="heading">Contact Us!</h1>
             <div className="form-group">
                 <label className="col-form-label" htmlFor="name">Name</label>
-                <input type="text" className="form-control" placeholder="Name" name="name" id="name" onChange={this.handleChange}></input>
+                <input type="text" autoFocus={true} className="form-control" placeholder="Name" name="name" id="name" onChange={this.handleChange}></input>
             </div>
             <div>
                 <label className="col-form-label" htmlFor="email">Email</label>

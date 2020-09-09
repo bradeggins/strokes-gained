@@ -220,6 +220,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
         className: "col-form-label"
       }, "Course"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        autoFocus: true,
         name: "course",
         id: "course",
         className: "form-control",
@@ -786,6 +787,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
         htmlFor: "name"
       }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        autoFocus: true,
         className: "form-control",
         placeholder: "Name",
         name: "name",
@@ -1231,6 +1233,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }, "Distance to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "",
         name: "dist_to_hole",
+        autoFocus: true,
         id: "dist_to_hole",
         className: "form-control form-control-lg",
         value: this.state.dist_to_hole,

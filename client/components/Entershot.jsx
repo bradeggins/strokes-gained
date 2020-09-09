@@ -79,7 +79,7 @@ class Entershot extends React.Component {
                 
                         <div className="form-group">
                             <label htmlFor="dist_to_hole" className="col-form-label-lg">Distance to Hole</label>
-                            <input type="" name="dist_to_hole" id="dist_to_hole" className="form-control form-control-lg" value={this.state.dist_to_hole} onChange={this.handleChange} />
+                            <input type="" name="dist_to_hole" autoFocus={true} id="dist_to_hole" className="form-control form-control-lg" value={this.state.dist_to_hole} onChange={this.handleChange} />
                         </div>
                         
                         <div className="custom-control custom-checkbox">
