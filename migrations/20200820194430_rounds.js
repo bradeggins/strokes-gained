@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('rounds', (table) => {
         table.increments('id').primary
-        table.integer('user_id').references('users.id')
+        table.integer('user_id')
         table.string('course')
         table.date('round_date')
     })
