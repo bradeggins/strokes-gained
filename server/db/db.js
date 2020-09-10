@@ -1,6 +1,8 @@
 const knex = require('knex')
-const config = require('../../knexfile').development
 const { validateBool } = require('../lib/lib')
+const environment = process.env.NODE_ENV || 'development'
+const config = require('../../knexfile')[environment]
+
 
 const database = knex(config)
 

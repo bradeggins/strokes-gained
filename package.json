@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
-    "start": "run-p webpack server",
+    "start": "run-s build server",
     "dev": "run-p client server",
     "webpack": "webpack",
     "client": "webpack --watch",
     "server": "node server",
-    "omg": "nodemon server"
+    "dev:server": "nodemon server",
+    "postinstall": "knex migrate:latest",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +23,9 @@
     "express-handlebars": "^5.1.0",
     "knex": "^0.21.5",
     "nodemailer": "^6.4.11",
+    "pg": "^8.3.3",
     "recharts": "^1.8.5",
+    "webpack": "^4.43.0",
     "sqlite3": "^5.0.0"
   },
   "babel": {
@@ -49,7 +53,6 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "supertest": "^4.0.2",
-    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   }
 }
