@@ -4,7 +4,7 @@ const seedFile = require('knex-seed-file');
  
 exports.seed = function(knex, Promise) {
   knex('data').del()
-    .then(() => seedFile(knex, path.resolve('../strokes-gained/server/data/sgData5.csv'), 'data',
+    .then(() => seedFile(knex, path.resolve('./server/data/sgData5.csv'), 'data',
     {
       columnSeparator: ',',
       ignoreFirstLine: true,
