@@ -14,7 +14,9 @@
     "client": "webpack --watch",
     "server": "node server",
     "dev:server": "nodemon server",
-    "postinstall": "run-s knex migrate:latest knex seed:run",
+    "postinstall": "run-s migrate seed",
+    "seed": "knex seed:run",
+    "migrate": "knex migrate:latest",
     "build": "webpack"
   },
   "author": "",
