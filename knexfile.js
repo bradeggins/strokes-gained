@@ -53,8 +53,11 @@ module.exports = {
       min: 2,
       max: 10
     },
+    seeds: {
+      directory: './seeds'
+    },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './migrations'
     }
   }
 
