@@ -14,7 +14,6 @@
     "client": "webpack --watch",
     "server": "node server",
     "dev:server": "nodemon server",
-    "postinstall": "knex migrate:latest",
     "build": "webpack"
   },
   "author": "",
