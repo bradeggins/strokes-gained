@@ -1,5 +1,5 @@
 function postData (string, request, state, callback){
-    const port  = process.env.PORT || 5000
+    // const port  = process.env.PORT || 5000
     const requestOptions = {
         method: request,
         headers: { 'Content-Type': 'application/json' },
@@ -7,7 +7,7 @@ function postData (string, request, state, callback){
     };
 
 
-    fetch(`http://localhost:${port}${string}`, requestOptions)
+    fetch(`${string}`, requestOptions)
         .then((response) => {
             return response.json()
         }).then((data) => {

@@ -41,6 +41,7 @@
       "@babel/plugin-proposal-class-properties"
     ]
   },
+  "proxy": "http://localhost:5000/",
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
