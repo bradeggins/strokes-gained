@@ -102,8 +102,6 @@
     },
     body: JSON.stringify(state)
   };
-  console.log(state);
-  console.log(requestOptions);
   fetch("http://localhost:".concat(port).concat(string), requestOptions).then(function (response) {
     return response.json();
   }).then(function (data) {
@@ -179,8 +177,8 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      round_date: "Date",
-      course: "ANGC",
+      round_date: "",
+      course: "",
       added: false
     });
 
@@ -188,6 +186,10 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       var value = event.target.value;
 
       _this.setState(_defineProperty({}, event.target.name, value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "formEnable", function () {
+      return _this.state.round_date == "" || _this.state.course == "" ? true : false;
     });
 
     _defineProperty(_assertThisInitialized(_this), "postForm", function () {
@@ -212,12 +214,13 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
           data: this.state
         }
       });else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group w-50 mx-auto mt-5"
+        className: "form-group responsive-container mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Add a New Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "course",
         className: "col-form-label"
       }, "Course"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        autoFocus: true,
         name: "course",
         id: "course",
         className: "form-control",
@@ -237,6 +240,7 @@ var AddRound = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
+        disabled: this.formEnable(),
         onClick: this.postForm
       }, "Add a round")));
     }
@@ -302,19 +306,27 @@ var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
     key: "render",
     value: function render() {
       console.log(this.props.items);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["BarChart"], {
-        width: 800,
-        height: 500,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ResponsiveContainer"], {
+        width: "95%",
+        height: 400
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["BarChart"], {
         data: this.props.items,
         margin: {
           top: 5,
           right: 30,
           left: 20,
-          bottom: 5
+          bottom: 20
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ReferenceLine"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        value: "Strokes Gained",
+        position: "left",
+        angle: -90,
+        style: {
+          textAnchor: "middle"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ReferenceLine"], {
         y: 0,
         stroke: "#000"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Bar"], {
@@ -341,7 +353,7 @@ var AnalyseChart = /*#__PURE__*/function (_PureComponent) {
         dataKey: "sgatg",
         barSize: 50,
         fill: "#00010E"
-      }));
+      })));
     }
   }]);
 
@@ -462,13 +474,13 @@ var AnalyseShots = /*#__PURE__*/function (_React$Component) {
       console.log(this.items);
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "align-center mt-5 w-75 mx-auto"
+        className: "align-center mt-5 responsive-container mx-auto"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Performance Analysis"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Analyse different areas of your game")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container d-flex flex-row mt-5"
+        className: "container d-flex flex-column mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "w-75 mx-auto d-flex flex-column"
+        className: "responsive-container mx-auto d-flex flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -676,8 +688,9 @@ function App(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api */ "./client/api.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _EmailSent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmailSent */ "./client/components/EmailSent.jsx");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./client/api.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -705,6 +718,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Contact = /*#__PURE__*/function (_React$Component) {
   _inherits(Contact, _React$Component);
 
@@ -721,7 +735,8 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       name: "",
       email: "",
       subject: "",
-      message: ""
+      message: "",
+      humanCheck: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
@@ -730,13 +745,26 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "formEnabled", function () {
+      return _this.isHumanInput(_this.state.humanCheck) && _this.emailIsValid(_this.state.email);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "emailIsValid", function (email) {
+      return /\S+@\S+\.\S+/.test(email);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "isHumanInput", function (number) {
+      return Number(number) == 7 ? true : false;
+    });
+
     _defineProperty(_assertThisInitialized(_this), "sendForm", function () {
-      Object(_api__WEBPACK_IMPORTED_MODULE_1__["postData"])('/sendmail', 'POST', _this.state, _this.formSentOk);
+      Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/sendmail', 'POST', _this.state, _this.formSentOk);
     });
 
     _defineProperty(_assertThisInitialized(_this), "formSentOk", function (data) {
-      // data.sent == true ? :
-      console.log(data);
+      _this.setState({
+        status: data.status
+      });
     });
 
     return _this;
@@ -747,20 +775,26 @@ var Contact = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container d-flex w-75 flex-column mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Contact Us!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container d-flex responsive-container flex-column mt-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmailSent__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        status: this.state.status
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        role: "heading"
+      }, "Contact Us!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "col-form-label",
         htmlFor: "name"
       }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        autoFocus: true,
         className: "form-control",
         placeholder: "Name",
         name: "name",
         id: "name",
         onChange: this.handleChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
         htmlFor: "email"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "email",
@@ -788,6 +822,7 @@ var Contact = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
         htmlFor: "message"
       }, "Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "form-control",
@@ -795,9 +830,22 @@ var Contact = /*#__PURE__*/function (_React$Component) {
         name: "message",
         rows: "5",
         onChange: this.handleChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "col-form-label",
+        htmlFor: "humanCheck"
+      }, "Are you a human? 5 + 2 = ?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        placeholder: "Answer",
+        name: "humanCheck",
+        id: "humanCheck",
+        onChange: this.handleChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary",
+        disabled: !this.formEnabled(),
         onClick: this.sendForm
       }, "Submit"));
     }
@@ -893,10 +941,10 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "w-50 mx-auto mt-5"
+        className: "responsive-container mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "round-table"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Round Entries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Shots"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-hover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
         className: "table-primary"
@@ -904,7 +952,7 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
         scope: "row"
       }, "Hole Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Distance to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Shot From(Lie)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Average Strokes to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Strokes Gained")), this.state.items.map(function (item) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          className: "table-secondary",
+          className: item.hole_number % 2 == 0 ? "table-secondary" : "",
           key: item.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
           scope: "row"
@@ -919,6 +967,85 @@ var Displayround = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Displayround);
+
+/***/ }),
+
+/***/ "./client/components/EmailSent.jsx":
+/*!*****************************************!*\
+  !*** ./client/components/EmailSent.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var EmailSent = /*#__PURE__*/function (_React$Component) {
+  _inherits(EmailSent, _React$Component);
+
+  var _super = _createSuper(EmailSent);
+
+  function EmailSent(props) {
+    _classCallCheck(this, EmailSent);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(EmailSent, [{
+    key: "render",
+    value: function render() {
+      if (!this.props.status) return null;
+      if (this.props.status == 'fail') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "alert alert-dismissible alert-danger"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        "class": "close",
+        "data-dismiss": "alert"
+      }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Oh snap!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "mailto:strokesgainedstats@gmail.com",
+        "class": "alert-link"
+      }, " Something went wrong, email us at strokesgainedstats@gmail.com"));else if (this.props.status == 'success') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "alert alert-dismissible alert-success"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "alert"
+      }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Nice work!"), " Your email has been successfully sent!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        className: "alert-link"
+      }));
+    }
+  }]);
+
+  return EmailSent;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (EmailSent);
 
 /***/ }),
 
@@ -987,6 +1114,10 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       err: ""
     });
 
+    _defineProperty(_assertThisInitialized(_this), "formEnable", function () {
+      return _this.state.shot_from == "" || _this.state.dist_to_hole == "" ? true : false;
+    });
+
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       var _this$setState;
 
@@ -996,7 +1127,8 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, value), _defineProperty(_this$setState, "round_id", round_id), _this$setState));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "postForm", function () {
+    _defineProperty(_assertThisInitialized(_this), "postForm", function (event) {
+      event.preventDefault();
       Object(_api__WEBPACK_IMPORTED_MODULE_2__["postData"])('/round/entershot', 'POST', _this.state, _this.setData);
     });
 
@@ -1035,58 +1167,62 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group w-50 mx-auto d-flex flex-column"
+        className: "form-group responsive-container mx-auto mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WarningBanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
         warn: this.state.showWarning,
         err: this.state.err,
         onClick: this.resetWarning
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Enter your round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "shot_from",
         className: "col-form-label-lg"
       }, "Shot From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.postForm
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "btn-group",
         role: "group",
-        "aria-label": "Basic example"
+        "aria-label": "button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "T"
       }, "Tee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "F"
       }, "Fairway"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "G"
       }, "Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "R"
       }, "Rough"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "S"
       }, "Sand"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "RC"
       }, "Recovery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         name: "shot_from",
         type: "button",
-        className: "btn btn-primary",
+        className: "btn btn-primary btn-lg",
         onClick: this.handleChange,
         value: "P"
       }, "Penalty")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1097,6 +1233,7 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
       }, "Distance to Hole"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "",
         name: "dist_to_hole",
+        autoFocus: true,
         id: "dist_to_hole",
         className: "form-control form-control-lg",
         value: this.state.dist_to_hole,
@@ -1111,13 +1248,13 @@ var Entershot = /*#__PURE__*/function (_React$Component) {
         value: "true",
         onChange: this.handleChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "custom-control-label",
+        className: "custom-control-label form-control-lg",
         htmlFor: "holed"
       }, "Holed?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-lg",
-        onClick: this.postForm
-      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        disabled: this.formEnable()
+      }, "Add shot ".concat(this.state.dist_to_hole, " ").concat(this.state.shot_from))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Displayround__WEBPACK_IMPORTED_MODULE_1__["default"], {
         round_id: this.props.match.params.round_id
       }));
     }
@@ -1179,7 +1316,9 @@ var HowToUse = /*#__PURE__*/function (_React$Component) {
   _createClass(HowToUse, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "How to Use Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Strokes gained is benchamrk in golf statistics. There is a direct correlation between strokes gained statistics and the world top golf rankings."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group responsive-container mx-auto d-flex flex-column mt-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "How to Use Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Select \"Add a Round\" to input the Course and Round Date."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Select the Lie Which you hit your shot from."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Enter the distance of the shot (how far to go to the hole)."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Click \"Add Shot\" (or hit enter) to add your shot to the round"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Information about Strokes Gained"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Strokes gained mesaures your shot against the average shot of a PGA Tour Professional. You can view your strokes gained (or lost) for every individual shot you make. If your strokes gained is a positive number you gained strokes against an average PGA Tour field for that particular shot. If your strokes gained is negative, you lost shots against the 'average' PGA tour field."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "How accurate do my entries need to be?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The more accurate the data you enter is, the more accurate your results are. Good estimates will still produce good results with minor variations in Strokes Gained(or lost) for that shot. For example being 20m out on a shot from 150m only skews the result by less than 0.1 of a shot."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Why I am seeing a lot of negative strokes gained results?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The benchmark is the PGA tour! You are comparing your performance to that of an average PGA Tour Pro.")));
     }
   }]);
 
@@ -1392,23 +1531,36 @@ var RenderLineChart = /*#__PURE__*/function (_PureComponent) {
     value: function render() {
       console.log(this.props.round.items);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["ResponsiveContainer"], {
-        width: 700,
+        width: "100%",
         height: "80%"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["LineChart"], {
         data: this.props.round.items,
         margin: {
-          top: 5,
+          top: 30,
           right: 30,
-          left: 20,
-          bottom: 5
+          left: 30,
+          bottom: 30
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["CartesianGrid"], {
         strokeDasharray: "3 3"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["XAxis"], {
         dataKey: "hole_number"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        value: "Hole",
+        position: "bottom",
+        style: {
+          textAnchor: "middle"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["YAxis"], {
         dataKey: "sg"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Legend"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        value: "Strokes Gained",
+        position: "left",
+        angle: -90,
+        style: {
+          textAnchor: "middle"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(recharts__WEBPACK_IMPORTED_MODULE_1__["Line"], {
         type: "monotone",
         dataKey: "sg",
         stroke: "#008cba",
@@ -1504,32 +1656,23 @@ var SelectRound = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "btn-group",
-        role: "group",
-        "aria-label": "Button group with nested dropdown"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-primary"
-      }, "View a Round"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "btn-group",
-        role: "group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "btnGroupDrop1",
-        type: "button",
-        className: "btn btn-primary dropdown-toggle",
-        "data-toggle": "dropdown",
-        "aria-haspopup": "true",
-        "aria-expanded": "false"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dropdown-menu",
-        "aria-labelledby": "btnGroupDrop1"
-      }, this.state.rounds.map(function (item) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/".concat(item.id, "/displayround"),
-          key: item.id,
-          className: "dropdown-item"
-        }, item.course, ", ", item.round_date, " ");
-      })))));
+        className: "d-flex flex-column responsive-container mx-auto mt-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Select an entry to view the round"), this.state.rounds.map(function (item) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card border-primary mb-3",
+          key: item.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/".concat(item.id, "/displayround")
+        }, item.course)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "card-title"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/".concat(item.id, "/displayround")
+        }, item.round_date))));
+      })));
     }
   }]);
 

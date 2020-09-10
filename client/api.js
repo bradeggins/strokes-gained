@@ -6,8 +6,7 @@ function postData (string, request, state, callback){
         body: JSON.stringify(state)
     };
 
-    console.log(state);
-    console.log(requestOptions);
+
     fetch(`http://localhost:${port}${string}`, requestOptions)
         .then((response) => {
             return response.json()
