@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema.table('shots', (table) => {
-        table.int('hole_number')
+        table.integer('hole_number')
     })
   
 };
